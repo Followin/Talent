@@ -42,15 +42,16 @@ namespace Talent.Web.Parser
             {
                 var a = "hello";
             }
-
-            values = new Dictionary<string, string>();
+            var cookies = httpResponseMessage.Headers.ToList().ElementAt(4).Value;
+            values.Clear();
             values.Add("RelayState", tokenReturnUrl);
             values.Add("SAMLResponse", token);
-            content = new FormUrlEncodedContent(values);
+            var newContent = new FormUrlEncodedContent(values);
+            httpClient.DefaultRequestHeaders.Add("Cookie", "mellon-production = a10a5d8987767c63190c3a5405ac3e3b");
 
-            httpResponseMessage = await httpClient.PostAsync("https://e3s.epam.com:443/mellon/postResponse", content);
+            var newHttpResponseMessage = await httpClient.PostAsync("https://e3s.epam.com:443/mellon/postResponse", newContent);
 
-            if (httpResponseMessage.StatusCode == HttpStatusCode.OK)
+            if (newHttpResponseMessage.StatusCode == HttpStatusCode.OK)
             {
                 var abc = "hello";
             }
