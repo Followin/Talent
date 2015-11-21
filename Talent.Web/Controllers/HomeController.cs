@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Web.Mvc;
 using Newtonsoft.Json.Linq;
 using Talent.Web.Models;
+using Talent.Web.Static;
 
 namespace Talent.Web.Controllers
 {
@@ -49,24 +50,45 @@ namespace Talent.Web.Controllers
             var accessToken = jobj["access_token"].ToString();
             var userId = jobj["user_id"].ToString();
             var fields = "uid, first_name, last_name, screen_name, sex, bdate, interests";
-            //var requestUrl = string.Format("{0}?fields={1}&uids={2}&access_token={3}",
-            //    @"https://api.vk.com/method/users.get", fields, userId, accessToken);
-            //var result = await _client.GetStringAsync(requestUrl);
+            var requestUrl = string.Format("{0}?fields={1}&uids={2}&access_token={3}",
+                @"https://api.vk.com/method/users.get", fields, userId, accessToken);
+            var result = await _client.GetStringAsync(requestUrl);
+            var resultObj = (JObject.Parse(result)["response"] as JArray)[0];
+            var interests = resultObj["interests"].ToString();
+            var firstName = resultObj["first_name"].ToString();
+            var lastName = resultObj["last_name"].ToString();
 
             var groupFields = "id, name";
             var groupsUrl = string.Format("{0}?extended=1&user_id={2}&access_token={3}", @"https://api.vk.com/method/groups.get",
                 groupFields, userId, accessToken);
-            var result = await _client.GetStringAsync(groupsUrl);
+            result = await _client.GetStringAsync(groupsUrl);
             var groups = (JObject.Parse(result)["response"] as JArray);
 
-            var groupsString = groups.Skip(1).Aggregate(string.Empty, (res, token) => res + token["name"].ToString() + ", ");
+            var groupNames = groups.Skip(1).Select(x => x["name"].ToString());
 
-            return Json(groupsString, JsonRequestBehavior.AllowGet);
+            var existingUser = UsersList.Users.Find(x => x.Id == userId);
+            if (existingUser == null)
+            {
+                UsersList.Users.Add(new User
+                {
+                    Id = userId,
+                    FirstName = firstName,
+                    LastName = lastName,
+                    Groups = groupNames.ToArray()
+                });
+            }
+
+            return View("CloseTab");
         }
 
         public ActionResult ShowToken(string str)
         {
             return View("ShowString", (object)str);
+        }
+
+        public ActionResult ShowUsers()
+        {
+            return Json(UsersList.Users, JsonRequestBehavior.AllowGet);
         }
     }
 }
