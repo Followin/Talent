@@ -1,4 +1,6 @@
-﻿using System.Net.Http;
+﻿using System;
+using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using Newtonsoft.Json.Linq;
@@ -47,16 +49,19 @@ namespace Talent.Web.Controllers
             var accessToken = jobj["access_token"].ToString();
             var userId = jobj["user_id"].ToString();
             var fields = "uid, first_name, last_name, screen_name, sex, bdate, interests";
-            var requestUrl = string.Format("{0}?fields={1}&uids={2}&access_token={3}",
-                @"https://api.vk.com/method/users.get", fields, userId, accessToken);
-            var result = await _client.GetStringAsync(requestUrl);
+            //var requestUrl = string.Format("{0}?fields={1}&uids={2}&access_token={3}",
+            //    @"https://api.vk.com/method/users.get", fields, userId, accessToken);
+            //var result = await _client.GetStringAsync(requestUrl);
 
             var groupFields = "id, name";
-            var groupsUrl = string.Format("{0}?fields={1}&user_id={2}&access_token={3}", @"https://api.vk.com/method/groups.get",
+            var groupsUrl = string.Format("{0}?extended=1&user_id={2}&access_token={3}", @"https://api.vk.com/method/groups.get",
                 groupFields, userId, accessToken);
-            result = result + await _client.GetStringAsync(groupsUrl);
+            var result = await _client.GetStringAsync(groupsUrl);
+            var groups = (JObject.Parse(result)["response"] as JArray);
 
-            return Json(result, JsonRequestBehavior.AllowGet);
+            var groupsString = groups.Skip(1).Aggregate(string.Empty, (res, token) => res + token["name"].ToString() + ", ");
+
+            return Json(groupsString, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult ShowToken(string str)
