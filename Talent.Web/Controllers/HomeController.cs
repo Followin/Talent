@@ -37,7 +37,7 @@ namespace Talent.Web.Controllers
             return View(model);
         }
 
-        public async Task<ActionResult> Code(string code)
+        private async Task AddVkUser(string code)
         {
             var redirectUri = Url.Action("Code", "Home", null, Request.Url.Scheme);
 
@@ -54,13 +54,12 @@ namespace Talent.Web.Controllers
                 @"https://api.vk.com/method/users.get", fields, userId, accessToken);
             var result = await _client.GetStringAsync(requestUrl);
             var resultObj = (JObject.Parse(result)["response"] as JArray)[0];
-            var interests = resultObj["interests"].ToString();
+            var interests = resultObj["interests"].ToString().Split(',');
             var firstName = resultObj["first_name"].ToString();
             var lastName = resultObj["last_name"].ToString();
 
-            var groupFields = "id, name";
-            var groupsUrl = string.Format("{0}?extended=1&user_id={2}&access_token={3}", @"https://api.vk.com/method/groups.get",
-                groupFields, userId, accessToken);
+            var groupsUrl = string.Format("{0}?extended=1&user_id={1}&access_token={2}", @"https://api.vk.com/method/groups.get",
+                userId, accessToken);
             result = await _client.GetStringAsync(groupsUrl);
             var groups = (JObject.Parse(result)["response"] as JArray);
 
@@ -74,9 +73,15 @@ namespace Talent.Web.Controllers
                     Id = userId,
                     FirstName = firstName,
                     LastName = lastName,
-                    Groups = groupNames.ToArray()
+                    Groups = groupNames.ToArray(),
+                    Interests = interests,
                 });
             }
+        }
+
+        public async Task<ActionResult> Code(string code)
+        {
+            await AddVkUser(code);
 
             return View("CloseTab");
         }

@@ -13,6 +13,8 @@ namespace Talent.Web.Models
 
         public string LastName { get; set; }
 
+        public string[] Interests { get; set; }
+
         public string[] Groups { get; set; }
     }
 }
