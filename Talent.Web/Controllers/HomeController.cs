@@ -1,9 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using Newtonsoft.Json.Linq;
+using Talent.DAL;
+using Talent.DAL.Models;
 using Talent.Web.Models;
 using Talent.Web.Static;
 
@@ -13,6 +19,7 @@ namespace Talent.Web.Controllers
     {
         private const string ApiId = "5157103";
         private const string Secret = "KP62F9De2olW4F4CgQPk";
+        private EfContext _db = new EfContext();
 
         private HttpClient _client;
 
@@ -65,17 +72,27 @@ namespace Talent.Web.Controllers
 
             var groupNames = groups.Skip(1).Select(x => x["name"].ToString());
 
-            var existingUser = UsersList.Users.Find(x => x.Id == userId);
+            var resultInterests = new List<Interest>();
+            foreach (var group in groupNames)
+            {
+                var synonym = _db.Synonyms.ToList().FirstOrDefault(x => Regex.IsMatch(group, x.Text));
+                if (synonym != null)
+                {
+                    resultInterests.Add(synonym.Interest);
+                }
+            }
+
+            var existingUser = await _db.Users.FindAsync(userId);
             if (existingUser == null)
             {
-                UsersList.Users.Add(new User
+                _db.Users.Add(new User
                 {
                     Id = userId,
                     FirstName = firstName,
                     LastName = lastName,
-                    Groups = groupNames.ToArray(),
-                    Interests = interests,
+                    Interests = resultInterests
                 });
+                await _db.SaveChangesAsync();
             }
         }
 
@@ -91,9 +108,10 @@ namespace Talent.Web.Controllers
             return View("ShowString", (object)str);
         }
 
-        public ActionResult ShowUsers()
+        public async Task<JsonResult> ShowUsers()
         {
-            return Json(UsersList.Users, JsonRequestBehavior.AllowGet);
+            var users = await _db.Users.ToListAsync();
+            return Json(users.Select(x => new { Name = x.FirstName + ' ' + x.LastName, Interests = x.Interests.Select(y => new { Title = y.TitleEn })}), JsonRequestBehavior.AllowGet);
         }
     }
 }
