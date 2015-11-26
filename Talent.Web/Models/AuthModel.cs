@@ -1,6 +1,6 @@
 ﻿namespace Talent.Web.Models
 {
-    public class VkAuthModel
+    public class AuthModel
     {
         public string ApiId { get; set; }
 

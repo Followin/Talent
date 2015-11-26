@@ -17,8 +17,11 @@ namespace Talent.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private const string ApiId = "5157103";
-        private const string Secret = "KP62F9De2olW4F4CgQPk";
+        private const string VkApiId = "5157103";
+        private const string VkSecret = "KP62F9De2olW4F4CgQPk";
+        private const string LinkedinApiId = "77drty6p9okcfs";
+        private const string LinkedinSecret = "RNJjGFRmBJAQFvDL";
+
         private EfContext _db = new EfContext();
 
         private HttpClient _client;
@@ -34,14 +37,29 @@ namespace Talent.Web.Controllers
             var redirectUri = Url.Action("Code", "Home", null, Request.Url.Scheme);
 
 
-            var model = new VkAuthModel
+            var vkmodel = new AuthModel
             {
-                ApiId = "5157103",
+                ApiId = VkApiId,
                 RedirectUri = redirectUri,
                 Scope = "friends, groups"
             };
 
-            return View(model);
+            var linkedRedirectUri = Url.Action("LinkedinCode", "Home", null, Request.Url.Scheme);
+
+            var linkedInModel = new LinkedInAuthModel
+            {
+                ApiId = LinkedinApiId,
+                RedirectUri = linkedRedirectUri,
+                State = Guid.NewGuid().ToString()
+            };
+
+            var socialsViewModel = new SocialsViewModel
+            {
+                LinkedIn = linkedInModel,
+                Vk = vkmodel
+            };
+
+            return View(socialsViewModel);
         }
 
         private async Task AddVkUser(string code)
@@ -49,7 +67,7 @@ namespace Talent.Web.Controllers
             var redirectUri = Url.Action("Code", "Home", null, Request.Url.Scheme);
 
             var url = string.Format("{0}?client_id={1}&client_secret={2}&code={3}&redirect_uri={4}",
-                @"https://oauth.vk.com/access_token", ApiId, Secret, code, redirectUri);
+                @"https://oauth.vk.com/access_token", VkApiId, VkSecret, code, redirectUri);
 
             var str = await _client.GetStringAsync(url);
             var jobj = JObject.Parse(str);
@@ -101,6 +119,13 @@ namespace Talent.Web.Controllers
             await AddVkUser(code);
 
             return View("CloseTab");
+        }
+
+
+
+        public async Task<ActionResult> LinkedinCode(string code)
+        {
+            return View("ShowString", code as object);
         }
 
         public ActionResult ShowToken(string str)
