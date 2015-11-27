@@ -3,7 +3,7 @@ namespace Talent.DAL.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class initTry : DbMigration
+    public partial class inits : DbMigration
     {
         public override void Up()
         {

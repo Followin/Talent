@@ -50,21 +50,9 @@
   <ItemGroup>
     <Compile Include="EfContext.cs" />
     <Compile Include="EfInitializer.cs" />
-    <Compile Include="Migrations\201511231206361_initTry.cs" />
-    <Compile Include="Migrations\201511231206361_initTry.Designer.cs">
-      <DependentUpon>201511231206361_initTry.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201511231209066_initTry1.cs" />
-    <Compile Include="Migrations\201511231209066_initTry1.Designer.cs">
-      <DependentUpon>201511231209066_initTry1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201511231210414_onemoretry.cs" />
-    <Compile Include="Migrations\201511231210414_onemoretry.Designer.cs">
-      <DependentUpon>201511231210414_onemoretry.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201511231213389_onemoretry1.cs" />
-    <Compile Include="Migrations\201511231213389_onemoretry1.Designer.cs">
-      <DependentUpon>201511231213389_onemoretry1.cs</DependentUpon>
+    <Compile Include="Migrations\201511271348192_inits.cs" />
+    <Compile Include="Migrations\201511271348192_inits.Designer.cs">
+      <DependentUpon>201511271348192_inits.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Interest.cs" />
@@ -78,17 +66,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201511231206361_initTry.resx">
-      <DependentUpon>201511231206361_initTry.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201511231209066_initTry1.resx">
-      <DependentUpon>201511231209066_initTry1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201511231210414_onemoretry.resx">
-      <DependentUpon>201511231210414_onemoretry.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201511231213389_onemoretry1.resx">
-      <DependentUpon>201511231213389_onemoretry1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201511271348192_inits.resx">
+      <DependentUpon>201511271348192_inits.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

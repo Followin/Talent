@@ -1,4 +1,4 @@
-using System.Threading.Tasks;
+п»їusing System.Threading.Tasks;
 using Talent.DAL.Models;
 
 namespace Talent.DAL.Migrations
@@ -17,66 +17,66 @@ namespace Talent.DAL.Migrations
             context.Interests.Add(new Interest
             {
                 TitleEn = "Football",
-                TitleRu = "Футбол",
+                TitleRu = "Р¤СѓС‚Р±РѕР»",
                 Category = "Sport",
                 Synonyms = new Synonym[]
                 {
-                    @".*footb.*|.*футб.*|.*fc.*|.*фк.*", 
+                    @".*footb.*|.*С„СѓС‚Р±(?!РѕР»РєРё).*|.*fc.*|.*С„Рє.*", 
                 }
             });
 
             context.Interests.Add(new Interest
             {
                 TitleEn = "Basketball",
-                TitleRu = "Баскетбол",
+                TitleRu = "Р‘Р°СЃРєРµС‚Р±РѕР»",
                 Category = "Sport",
                 Synonyms = new Synonym[]
                 {
-                    @".*(баскетб|basketb).*", 
+                    @".*(Р±Р°СЃРєРµС‚Р±|basketb).*", 
                 }
             });
 
             context.Interests.Add(new Interest
             {
-                TitleRu = "Классичесская музыка",
+                TitleRu = "РљР»Р°СЃСЃРёС‡РµСЃРєР°СЏ РјСѓР·С‹РєР°",
                 TitleEn = "Classical music",
                 Category = "Music",
                 Synonyms = new Synonym[]
                 {
-                    @".*classic.*music.*|.*классич.*музыка.*"
+                    @".*classic.*music.*|.*РєР»Р°СЃСЃРё.*РјСѓР·С‹Рє.*"
                 }
             });
 
             context.Interests.Add(new Interest
             {
                 TitleEn = "Poetry",
-                TitleRu = "Поэзия",
+                TitleRu = "РџРѕСЌР·РёСЏ",
                 Category = "Poetry",
                 Synonyms = new Synonym[]
                 {
-                    @".*стих.*|.*поэз.*|poe.*|verses"
+                    @".*РїРѕСЌ.*|.*СЃС‚РёС….*|poe.*|verses"
                 }
             });
 
             context.Interests.Add(new Interest
             {
                 TitleEn = "Popular music",
-                TitleRu = "Популярная музыка",
+                TitleRu = "РџРѕРїСѓР»СЏСЂРЅР°СЏ РјСѓР·С‹РєР°",
                 Category = "Music",
                 Synonyms = new Synonym[]
                 {
-                    @".*поп.*музыка.*|.*pop.*(music)?"
+                    @".*РїРѕРї.*РјСѓР·С‹Рє.*|.*pop.*(music)?"
                 }
             });
 
             context.Interests.Add(new Interest
             {
-                TitleRu = "Бокс",
+                TitleRu = "Р‘РѕРєСЃ",
                 TitleEn = "Boxing",
                 Category = "Sport",
                 Synonyms = new Synonym[]
                 {
-                    @".*(boxin|бокс).*"
+                    @".*(boxin|Р±РѕРєСЃ).*"
                 }
             });
 

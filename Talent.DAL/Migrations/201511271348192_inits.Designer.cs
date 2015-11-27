@@ -7,13 +7,13 @@ namespace Talent.DAL.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class initTry : IMigrationMetadata
+    public sealed partial class inits : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(initTry));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(inits));
         
         string IMigrationMetadata.Id
         {
-            get { return "201511231206361_initTry"; }
+            get { return "201511271348192_inits"; }
         }
         
         string IMigrationMetadata.Source
