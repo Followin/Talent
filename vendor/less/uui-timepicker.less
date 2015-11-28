@@ -1,0 +1,84 @@
+﻿@blue: #39c2d7;
+@blue_dark: #1a9cb0;
+@red: #eb6a5a;
+@green_dark: #7f993a;
+@green_lime: #a3c644;
+@gray_dark: #464547;
+@gray_medium: #666666;
+@gray: #999999;
+@gray_light: #cccccc;
+@white: #ffffff;
+@violet: #937ebd;
+@turquoise: #39b7ac;
+@yellow: #ecc134;
+@orange: #f0ad4d;
+@raspberry: #b32746;
+@plum: #8e244d;
+@black: #000000;
+
+.uui-timepicker {
+    &.time-button {
+        .uui-form-element {
+            float: left;
+            width: 120px;
+            border-right-color: @white;
+
+            &.large {
+                width: 150px;
+            }
+
+            &.small {
+                width: 90px;
+            }
+
+            &:focus {
+                border: 1px solid black;
+            }
+        }
+
+        .add-on {
+            float: left;
+            padding: 6px 10px;
+
+            &.large {
+                padding: 10px 16px;
+                font-size: 18px;
+                height: 48px;
+            }
+
+            &.small {
+                padding: 5px 7px;
+                font-size: 12px;
+                height: 28px;
+            }
+        }
+    }
+}
+
+.bootstrap-timepicker-widget {
+    &.dropdown-menu {
+        border-radius: 0;
+        box-shadow: none;
+
+        table tr td {
+            input {
+                width: 30px;
+                border-radius: 0;
+                font-size: 15px;
+                border: 1px solid @gray_light;
+                padding: 3px 0;
+            }
+
+            a {
+                i {
+                    color: @gray_dark;
+                }
+
+                &:hover {
+                    border-radius: 0;
+                    border: none;
+                }
+            }
+        }
+    }
+}

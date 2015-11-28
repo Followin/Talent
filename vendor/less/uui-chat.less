@@ -1,0 +1,120 @@
+﻿@blue: #39c2d7;
+@blue_dark: #1a9cb0;
+@red: #eb6a5a;
+@green_dark: #7f993a;
+@green_lime: #a3c644;
+@gray_dark: #464547;
+@gray_medium: #666666;
+@gray: #999999;
+@gray_light: #cccccc;
+@white: #ffffff;
+@violet: #937ebd;
+@turquoise: #39b7ac;
+@yellow: #ecc134;
+@orange: #f0ad4d;
+@raspberry: #b32746;
+@plum: #8e244d;
+@black: #000000;
+
+.uui-chat {
+    width: 100%;
+    list-style: none;
+    margin: 0;
+
+    .chat-body {
+        display: table;
+        width: 100%;
+        margin: 0 0 10px 0;
+
+        .chat-section {
+            display: table-cell;
+            vertical-align: top;
+
+            &.photo {
+                width: 70px;
+                padding: 0 0 0 15px;
+
+                .photo-wrapper {
+                    border: 1px solid @gray_light;
+                    width: 55px;
+                    height: 55px;
+                    overflow: hidden;
+
+                    img {
+                        width: 100%;
+                        height: auto;
+                    }
+                }
+            }
+
+            &.desk {
+                .chat-desk {
+                    min-height: 55px;
+                    background: lighten(@gray, 36%);
+                    position: relative;
+                    padding: 15px;
+                    display: inline-block;
+
+                    .chat-arrow {
+                        border-bottom: 8px solid transparent;
+                        border-top: 8px solid transparent;
+                        display: block;
+                        width: 0;
+                        height: 0;
+                        position: absolute;
+                        top: 13px;
+                    }
+                }
+            }
+        }
+
+        &.message {
+            .chat-section {
+                width: 100%;
+
+                &.text-field {
+                    .uui-form-element {
+                        height: 55px;
+                        min-height: 55px;
+                        resize: none;
+                        border-right-color: @white;
+
+                        &:focus {
+                            border: 1px solid @black;
+                        }
+                    }
+                }
+
+                &.button {
+                    .uui-button {
+                        width: 55px;
+                        height: 55px;
+                        padding: 0;
+                        line-height: 55px;
+
+                        i {
+                            font-size: 18px;
+                        }
+                    }
+                }
+            }
+        }
+
+        &.right {
+            .chat-section {
+                &.desk {
+                    .chat-desk {
+                        float: none;
+                        display: block;
+                        padding: 10px 10px 10px 15px;
+
+                        .chat-arrow {
+                            border-left: 8px solid lighten(@gray, 36%) !important;
+                            right: -7px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

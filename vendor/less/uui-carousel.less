@@ -1,0 +1,82 @@
+@blue: #39c2d7;
+@blue_dark: #1a9cb0;
+@red: #eb6a5a;
+@green_dark: #7f993a;
+@green_lime: #a3c644;
+@gray_dark: #464547;
+@gray_medium: #666666;
+@gray: #999999;
+@gray_light: #cccccc;
+@white: #ffffff;
+@violet: #937ebd;
+@turquoise: #39b7ac;
+@yellow: #ecc134;
+@orange: #f0ad4d;
+@raspberry: #b32746;
+@plum: #8e244d;
+@black: #000000;
+
+.uui-carousel {
+    border: 1px solid @gray_light;
+        
+    .carousel-caption {
+        text-shadow: none;
+        color: inherit;
+
+        h3 {
+            font-weight: normal;
+            font-size: 18px;
+            margin: 0 0 10px 0;
+        }
+    }
+
+    .item {
+        text-align: center;
+        min-height: 150px;
+        overflow: hidden;
+
+        img {
+            width: 100%;
+            height: auto;
+        }
+    }
+
+    .carousel-indicators {
+        margin-bottom: 0;
+            
+        li {
+            width: 12px;
+            height: 12px;
+            margin: 1px;
+            background-color: @gray_light;
+            border: none;
+                
+            &.active {
+                background-color: @gray_dark;
+            }
+        }
+    }
+
+    .carousel-control {
+        width: 45px;
+        background: none;
+        color: @gray;
+        text-shadow:none;
+        font-size: 20px;
+        filter: none;
+            
+
+        &:hover, &:focus {
+            color: @gray;
+        }
+
+        i {
+            left: 50%;
+            margin-left: -10px;
+            margin-top: -10px;
+            position: absolute;
+            top: 50%;
+            width: 20px;
+        }
+    }
+}

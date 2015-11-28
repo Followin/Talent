@@ -1,0 +1,63 @@
+@import 'uui-fonts.less';
+
+@blue: #39c2d7;
+@blue_dark: #1a9cb0;
+@red: #eb6a5a;
+@green_dark: #7f993a;
+@green_lime: #a3c644;
+@gray_dark: #464547;
+@gray_medium: #666666;
+@gray: #999999;
+@gray_light: #cccccc;
+@white: #ffffff;
+@violet: #937ebd;
+@turquoise: #39b7ac;
+@yellow: #ecc134;
+@orange: #f0ad4d;
+@raspberry: #b32746;
+@plum: #8e244d;
+@black: #000000;
+
+.uui-breadcrumbs {
+    list-style: none;
+    padding: 8px 15px;
+    margin: 0;
+
+    > li {
+        display: inline-block;
+
+        + li:before {
+            padding: 0 5px;
+            color: @gray_medium;
+            content: "/\00a0";
+        }
+
+        a {
+            color: @blue_dark;
+            text-decoration: none;
+
+            &:hover {
+                color: @blue_dark;
+                text-decoration: underline;
+            }
+        }
+
+        i {
+            font-size: 14px;
+            padding: 0 3px 0 0;
+            color: @blue_dark;
+
+            &.active {
+                color: @gray_medium;
+            }
+        }
+
+        &.active {
+            a {
+                color: @gray_medium;
+                text-decoration: none;
+                cursor: default;
+            }
+        }
+    }
+}

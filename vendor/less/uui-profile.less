@@ -1,0 +1,173 @@
+﻿@blue: #39c2d7;
+@blue_dark: #1a9cb0;
+@red: #eb6a5a;
+@green_dark: #7f993a;
+@green_lime: #a3c644;
+@gray_dark: #464547;
+@gray_medium: #666666;
+@gray: #999999;
+@gray_light: #cccccc;
+@white: #ffffff;
+@violet: #937ebd;
+@turquoise: #39b7ac;
+@yellow: #ecc134;
+@orange: #f0ad4d;
+@raspberry: #b32746;
+@plum: #8e244d;
+@black: #000000;
+
+.uui-person-vertical-profile {
+    position: relative;
+    background: @white;
+
+    .person-profile-body {
+        position: relative;
+        display: table;
+        width: 100%;
+        background: @gray_light;
+
+        .person-profile-section {
+            display: table-cell;
+            vertical-align: middle;
+            padding: 15px;
+            text-align: center;
+
+            .person-profile-info {
+                h3 {
+                    font-size: 22px;
+                    margin: 0 0 10px 0;
+                }
+
+                p {
+                    margin: 0 0 10px 0;
+                    font-size: 14px;
+                }
+            }
+
+            .person-profile-photo {
+                width: 116px;
+                height: 116px;
+                overflow: hidden;
+                border-radius: 50%;
+                border: 8px solid @white;
+                display: inline-block;
+                margin: 0 0 -73px 0;
+
+                img {
+                    width: 100px;
+                    height: auto;
+                }
+            }
+        }
+    }
+
+    .person-profile-footer {
+        position: relative;
+        display: table;
+        width: 100%;
+        padding: 73px 0 0 0;
+        border-left: 1px solid @gray_light;
+        border-right: 1px solid @gray_light;
+        border-bottom: 1px solid @gray_light;
+
+        .person-profile-section {
+            display: table-cell;
+            vertical-align: middle;
+            padding: 15px;
+            text-align: center;
+        }
+    }
+}
+
+.uui-person-horizontal-profile {
+    position: relative;
+    background: @gray_light;
+
+    .person-profile-body {
+        position: relative;
+        display: table;
+        width: 100%;
+
+        .person-profile-section {
+            display: table-cell;
+            vertical-align: middle;
+            padding: 15px;
+            text-align: left;
+
+            .person-profile-info {
+                display: table-cell;
+                vertical-align: middle;
+                padding: 0 20px;
+
+                h3 {
+                    font-size: 22px;
+                    margin: 0 0 10px 0;
+                }
+
+                p {
+                    margin: 0 0 10px 0;
+                    font-size: 14px;
+                }
+            }
+
+            .person-profile-photo {
+                width: 116px;
+                height: 116px;
+                overflow: hidden;
+                border-radius: 50%;
+                border: 8px solid lighten(@gray_light, 10%);
+                display: table-cell;
+                margin: 0;
+
+                img {
+                    width: 100px;
+                    height: auto;
+                    vertical-align: middle;
+                }
+            }
+        }
+    }
+}
+
+.uui-profile-menu {
+    > a {
+        color: @white;
+
+        .profile-name {
+            display: inline-block;
+            float: left;
+            font-size: 15px;
+            margin-right: 5px;
+        }
+
+        .profile-photo {
+            float: left;
+            width: 30px;
+            height: 30px;
+            overflow: hidden;
+            margin-top: 15px;
+                
+            img {
+                float: left;
+                width: 100%;
+                height: auto;
+            }
+        }
+    }
+
+    ul.dropdown-menu {
+        width: 100%;
+        left: 0;
+        right: auto;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .uui-profile-menu {
+        > a {
+            .profile-name {
+                display: none;
+            }
+        }
+    }
+}

@@ -1,0 +1,94 @@
+@import 'uui-fonts.less';
+
+@blue: #39c2d7;
+@blue_dark: #1a9cb0;
+@red: #eb6a5a;
+@green_dark: #7f993a;
+@green_lime: #a3c644;
+@gray_dark: #464547;
+@gray_medium: #666666;
+@gray: #999999;
+@gray_light: #cccccc;
+@white: #ffffff;
+@violet: #937ebd;
+@turquoise: #39b7ac;
+@yellow: #ecc134;
+@orange: #f0ad4d;
+@raspberry: #b32746;
+@plum: #8e244d;
+@black: #000000;
+
+.uui-tabs {
+    overflow: hidden;
+    width: 100%;
+
+    .tabs-heading {
+        float: left;
+        width: 100%;
+        background: @gray_medium;
+
+        .nav-tabs {
+            border-bottom-color: @gray_medium;
+
+            a {
+                font-family: @Oswald_Regular;
+                text-transform: uppercase;
+                margin-right: 1px;
+                border-radius: 0;
+                border-top-color: @gray_medium;
+                border-left-color: @gray_medium;
+                border-right-color: @gray_medium;
+                border-bottom-color: transparent;
+                color: @white;
+                letter-spacing: 0.5px;
+                padding: 10px 15px;
+                text-decoration: none;
+
+                &:hover, &:focus {
+                    color: @gray_medium;
+                    background-color: @white;
+                    border-top-color: lighten(@gray_light, 10%);
+                    border-left-color: lighten(@gray_light, 10%);
+                    border-right-color: lighten(@gray_light, 10%);
+                    border-bottom-color: transparent;
+                }
+            }
+
+            .active {
+                a, a:hover {
+                    border-top-color: lighten(@gray_light, 10%);
+                    border-left-color: lighten(@gray_light, 10%);
+                    border-right-color: lighten(@gray_light, 10%);
+                    border-bottom-color: transparent;
+                    color: @gray_medium;
+                    background-color: @white;
+                }
+            }
+        }
+    }
+
+    .tabs-body {
+        float: left;
+        width: 100%;
+        border-bottom: 1px solid lighten(@gray_light, 10%);
+        border-left: 1px solid lighten(@gray_light, 10%);
+        border-right: 1px solid lighten(@gray_light, 10%);
+
+        .tab-content {
+            padding: 15px;
+        }
+    }
+
+    &.right {
+        .tabs-heading {
+            ul.nav-tabs {
+                float: right;
+
+                a {
+                    margin-right: 0;
+                    margin-left: 1px;
+                }
+            }
+        }
+    }
+}

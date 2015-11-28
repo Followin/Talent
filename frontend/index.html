@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <title>Connections|Tree</title>
+
+  <!-- jQuery Core -->
+  <script src="../vendor/js/lib/jquery-1.11.1.min.js"></script>
+
+  <!-- Bootstrap Core -->
+  <link rel="stylesheet" href="../vendor/bootstrap/css/bootstrap.min.css" />
+
+  <!-- EPAM UUI JavaScript Core -->
+
+  <!-- EPAM UUI Styles Core -->
+  <link rel="stylesheet" href="../vendor/css/uui-all.css" />
+
+  <!-- Custom CSS Styles -->
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <!-- Scroll for UUI Sidebar -->
+  <link rel="stylesheet" href="../vendor/css/lib/components/jquery.mCustomScrollbar.css" />
+  <link rel="stylesheet" href="../vendor/fonts/font-awesome/css/font-awesome.min.css" />
+  <!-- VIS -->
+  <script type="text/javascript" src="../vendor/vis/vis.js"></script>
+  <link href="../vendor/vis/vis.css" rel="stylesheet" type="text/css" />
+
+  <!--[if lt IE 9]>
+  <script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js">       </script>
+  <![endif]-->
+
+  <!-- custom styles -->
+  <link rel="stylesheet" href="css/custom-styles.css" />
+  <link rel="stylesheet" href="css/side-bar.css"/>
+</head>
+<body>
+<div class="wrapper">
+  <header>
+    <div class="uui-header blue">
+      <nav>
+        <div class="sidebar-toggle-box blue">
+          <div data-toggle="tooltip" data-placement="right" title="Toggle Navigation" class="sidebar-tooltip">
+            <span class="fa fa-reorder"></span>
+          </div>
+        </div>
+        <div class="epam-logo">
+          <img src="../vendor/images/Logo_Epam_White.svg" alt="logo" width="86" />
+        </div>
+        <a href="#" class="brand-logo">
+          <img src="img/logo.png" alt="logo">
+          Connections
+        </a>
+  <!--      <ul class="uui-navigation nav navbar-nav left">
+          <li>
+            <a href="#">TREE</a>
+          </li>
+          <li class="active">
+            <a href="#">ABOUT</a>
+          </li>
+          <li>
+            <a href="#">SETTINGS</a>
+          </li>
+          <li>
+            <a href="#">EXIT</a>
+          </li>
+        </ul>-->
+        <ul class="uui-navigation nav navbar-nav right">
+          <input type="text" class="uui-search" value="Search" />
+          <li class="dropdown uui-profile-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <span class="profile-name">Profile Name</span>
+              <div class="profile-photo">
+                <img src="img/no-avatar.png" alt="">
+              </div>
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu" >
+              <li class="dropdown-menu-links">
+                <a href="#" target="_blank">Tree</a>
+              </li>
+              <li class="dropdown-menu-links">
+                <a href="#" target="_blank">Settings</a>
+              </li>
+              <li class="dropdown-menu-links">
+                <a href="#" target="_blank">About</a>
+              </li>
+              <li class="dropdown-menu-links">
+                <a href="#" target="_blank">Exit</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <aside>
+    <div class="uui-side-bar blue side-bar" data-animate="true">
+      <div id="user-profile" class="user-profile">
+        <div class="uui-person-horizontal-profile white">
+          <div class="person-profile-body">
+            <div class="person-profile-section">
+              <div class="person-profile-photo">
+                <img id="user-photo" src="img/no_photo.png" alt=""/>
+              </div>
+              <div class="person-profile-info">
+                <h3 id="user-name"></h3>
+              </div>
+            </div>
+          </div>
+        </div>
+        <ul class="sidebar-menu">
+          <li class="sub-menu contacts" id="contacts">
+            <a href="#">
+              <i class="fa fa-book"></i>
+              <span>Contacts</span>
+              <div class="fa fa-caret-right arrow"></div>
+            </a>
+            <ul class="sub uui-items-list hover">
+              <li class="item-line-body" id="contact-skype">
+                <a class="line" id="skype-link" href="callto://">
+                  <div class="wrapper">
+                    <div class="item-section icon">
+                    <span class="uui-icon round white activite-icon">
+                        <i class="fa fa-skype blue"></i>
+                    </span>
+                    </div>
+                    <div id="skype-text-link" class="item-section content">
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li class="item-line-body" id="contact-tel">
+                <a class="line" id="tel-link" href="tel://">
+                  <div class="wrapper">
+                    <div class="item-section icon">
+                    <span class="uui-icon round white activite-icon">
+                        <i class="fa fa-phone red"></i>
+                    </span>
+                    </div>
+                    <div id="tel-link-text" class="item-section content">
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li class="item-line-body" id="contact-email">
+                <a class="line" id="email-link" href="mailto://">
+                  <div class="wrapper">
+                    <div class="item-section icon">
+                    <span class="uui-icon round white activite-icon">
+                      <i class="fa fa-envelope yellow"></i>
+                    </span>
+                    </div>
+                    <div id="email-link-text" class="item-section content">
+                    </div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="sub-menu hobbys" id="hobbys">
+            <a href="#">
+              <i class="fa fa-magic"></i>
+              <span>Interests</span>
+              <div class="fa fa-caret-right arrow"></div>
+            </a>
+            <ul id="hobbys-list" class="sub uui-items-list hover">
+                <script type="text/template" id="hobbys-item">
+                    <% _.each(items, function(elem) { %>
+                        <li class="item-line-body" data-node-target="<%= elem.id %>">
+                            <div class="line">
+                                <div class="wrapper">
+                                    <div class="item-section icon">
+                                            <span class="uui-icon round white activite-icon">
+                                                <i class="fa fa-phone red"></i>
+                                            </span>
+                                    </div>
+                                    <div class="item-section content hobby-name" >
+                                        <%= elem.title %>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    <% }); %>
+                </script>
+            </ul>
+          </li>
+          <li class="sub-menu skills" id="skills">
+            <a href="#">
+              <i class="fa fa-cogs"></i>
+              <span>Skills</span>
+              <div class="fa fa-caret-right arrow"></div>
+            </a>
+            <ul id="skills-list" class="sub uui-items-list hover">
+                <script type="text/template" id="skills-item">
+                    <% _.each(items, function(elem) { %>
+                    <li class="item-line-body" data-node-target="<%= elem.id %>">
+                        <div class="line">
+                            <div class="wrapper">
+                                <div class="item-section icon">
+                                            <span class="uui-icon round white activite-icon">
+                                                <i class="fa fa-phone red"></i>
+                                            </span>
+                                </div>
+                                <div class="item-section content hobby-name" >
+                                    <%= elem.title %>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <% }); %>
+                </script>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div id="hobby-profile" class="hobby-profile hide">
+        <div class="uui-person-horizontal-profile white">
+          <div class="person-profile-body">
+            <div class="person-profile-section">
+              <div class="person-profile-photo">
+                <img id="hobby-photo" src="img/no_photo.png" alt=""/>
+              </div>
+              <div class="person-profile-info">
+                <h3 id="hobby-name">Some Hobby Name Here</h3>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <ul class="sidebar-menu">
+              <li class="sub-menu people" id="people">
+                  <a href="#">
+                      <i class="fa fa-book"></i>
+                      <span>Contacts</span>
+                      <div class="fa fa-caret-right arrow"></div>
+                  </a>
+                  <ul id="people-list" class="sub uui-items-list hover">
+                      <script type="text/template" id="people-item">
+                          <% _.each(items, function(elem) { %>
+                          <li class="item-line-body" data-node-target="<%= elem.id %>">
+                              <div class="line">
+                                  <div class="wrapper">
+                                      <div class="item-section icon">
+                                            <span class="uui-icon round white activite-icon">
+                                                <img class="people-item-img" src="<%= elem.image %>" alt="<%= elem.title %>"/>
+                                            </span>
+                                      </div>
+                                      <div class="item-section content hobby-name" >
+                                          <%= elem.title %>
+                                      </div>
+                                  </div>
+                              </div>
+                          </li>
+                          <% }); %>
+                      </script>
+                  </ul>
+            </li>
+            </ul>
+          </div>
+      </div>
+  </aside>
+  <div class="uui-main-container">
+    <main id="tree-network">
+    </main>
+  </div>
+</div>
+<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="../vendor/js/uui-core.min.js" type="text/javascript"></script>
+<script src="../vendor/js/lib/components/jquery.mCustomScrollbar.concat.min.js"></script>
+<script type="text/javascript" src="../vendor/vis/vis.js"></script>
+<script src="../vendor/js/underscore-min.js"></script>
+<script type="text/javascript">
+  //search
+  $('.uui-search').blur(function () {
+    if (!$(this).val()) {
+      $(this).val('Search');
+    }
+  }).focus(function () {
+    if ($(this).val() == 'Search') {
+      $(this).val('');
+    }
+  });
+</script>
+<script>
+  UUI.Vertical_Menu.init({open:true});
+</script>
+<script src="js/tree.js"></script>
+<script src="js/aside.js"></script>
+<script src="js/cluster.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
