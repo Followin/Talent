@@ -1,0 +1,21 @@
+﻿@model Talent.Web.Models.SocialsViewModel
+
+@{
+    ViewBag.Title = "title";
+    var vkurl = string.Format("{0}?client_id={1}&redirect_uri={2}&response_type=code&scope={3}&display=popup",
+        @"http://oauth.vk.com/authorize",
+        Model.Vk.ApiId,
+        Model.Vk.RedirectUri,
+        Model.Vk.Scope);
+    var linkedInUrl = string.Format("{0}?redirect_uri={1}&response_type=code&client_id={2}&state={3}",
+        @"https://www.linkedin.com/uas/oauth2/authorization",
+        Model.LinkedIn.RedirectUri,
+        Model.LinkedIn.ApiId,
+        Model.LinkedIn.State);
+}
+
+
+
+<input type="button" onclick="window.open('@vkurl', 'signin', 'width=780,height=410,toolbar=0,scrollbars=0,status=0,resizable=0,location=0,menuBar=0,left=800,top=500')" value="vkAuth">
+<input type="button" onclick="window.open('@linkedInUrl', 'signin', 'width=780,height=410,toolbar=0,scrollbars=0,status=0,resizable=0,location=0,menuBar=0,left=800,top=500')" value="linkedAuth">
+

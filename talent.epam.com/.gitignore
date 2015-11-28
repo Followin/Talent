@@ -175,9 +175,6 @@ UpgradeLog*.htm
 *.mdf
 *.ldf
 
-!Northwind*.mdf
-!Northwind*.ldf
-
 # Business Intelligence projects
 *.rdl.data
 *.bim.layout

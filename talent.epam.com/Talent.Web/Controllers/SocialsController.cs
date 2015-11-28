@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net.Http;
+using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
@@ -129,6 +131,7 @@ namespace Talent.Web.Controllers
 
             await _db.SaveChangesAsync();
 
+            var skillGuids = _db.Skills.Where(x => skills.Contains(x.Name)).Select(x => x.Id);
 
             var currentAccount = GetCurrentAccount();
             User currentUser;
@@ -142,17 +145,17 @@ namespace Talent.Web.Controllers
                 currentUser = currentAccount.User;
             }
 
+            var currentUserSkills = _db.UserSkills.Where(x => x.UserId == currentUser.Id).Select(x => x.SkillId);
 
-            foreach (var toDel in currentUser.Skills.Select(x => x.Name).Except(skills))
+            foreach (var toDel in currentUserSkills.Except(skillGuids))
             {
-                var del = await _db.Skills.FirstOrDefaultAsync(x => x.Name == toDel);
-                currentUser.Skills.Remove(del);
+                var del = await _db.UserSkills.FindAsync(currentUser.Id, toDel);
+                _db.UserSkills.Remove(del);
             }
 
-            foreach (var toAdd in skills.Except(currentUser.Skills.Select(x => x.Name)))
+            foreach (var toAdd in skillGuids.Except(currentUserSkills))
             {
-                var add = await _db.Skills.FirstOrDefaultAsync(x => x.Name == toAdd);
-                currentUser.Skills.Add(add);
+                _db.UserSkills.Add(new UserSkill { UserId = currentUser.Id, SkillId = toAdd });
             }
 
             await _db.SaveChangesAsync();
@@ -170,7 +173,7 @@ namespace Talent.Web.Controllers
 
             var accessToken = jobj["access_token"].ToString();
             var userId = jobj["user_id"].ToString();
-            var fields = "uid, first_name, last_name, screen_name, sex, bdate, interests";
+            var fields = "uid, first_name, last_name, photo_big, screen_name, sex, bdate, interests";
             var requestUrl = string.Format("{0}?fields={1}&uids={2}&access_token={3}",
                 @"https://api.vk.com/method/users.get", fields, userId, accessToken);
             var result = await _client.GetStringAsync(requestUrl);
@@ -178,6 +181,7 @@ namespace Talent.Web.Controllers
             var interests = resultObj["interests"].ToString().Split(',');
             var firstName = resultObj["first_name"].ToString();
             var lastName = resultObj["last_name"].ToString();
+            var photoLink = resultObj["photo_big"].ToString();
 
             var groupsUrl = string.Format("{0}?extended=1&user_id={1}&access_token={2}", @"https://api.vk.com/method/groups.get",
                 userId, accessToken);
@@ -186,13 +190,13 @@ namespace Talent.Web.Controllers
 
             var groupNames = groups.Skip(1).Select(x => x["name"].ToString());
 
-            var resultInterests = new List<Interest>();
+            var resultInterestGuids = new List<Guid>();
             foreach (var group in groupNames)
             {
-                var synonym = _db.Synonyms.ToList().FirstOrDefault(x => Regex.IsMatch(group, x.Text));
+                var synonym = _db.Synonyms.ToList().FirstOrDefault(x => Regex.IsMatch(group.ToLower(), x.Text));
                 if (synonym != null)
                 {
-                    resultInterests.Add(synonym.Interest);
+                    resultInterestGuids.Add(synonym.Interest.Id);
                 }
             }
 
@@ -208,53 +212,103 @@ namespace Talent.Web.Controllers
                 {
                     VkId = userId,
                     FirstName = firstName,
-                    LastName = lastName
+                    LastName = lastName,
+                    PhotoLink = photoLink
                 });
-                
+
                 currentAccount.User = user;
                 _db.Entry(currentAccount).State = EntityState.Modified;
             }
 
             user.FirstName = firstName;
             user.LastName = lastName;
+            user.PhotoLink = photoLink;
 
-            if (user.Interests == null)
-            {
-                user.Interests = resultInterests;
-            }
-            else
-            {
-                foreach (var toDel in user.Interests.Except(resultInterests))
-                {
-                    user.Interests.Remove(toDel);
-                }
+            var currentUserInterests = _db.UserInterests.Where(x => x.UserId == user.Id).Select(x => x.InterestId);
 
-                foreach (var toAdd in resultInterests.Except(user.Interests))
-                {
-                    user.Interests.Add(toAdd);
-                }
+            foreach (var toDel in currentUserInterests.Except(resultInterestGuids))
+            {
+                var del = await _db.UserInterests.FindAsync(user.Id, toDel);
+                _db.UserInterests.Remove(del);
             }
 
-            
+            foreach (var toAdd in resultInterestGuids.Except(currentUserInterests))
+            {
+                _db.UserInterests.Add(new UserInterest { UserId = user.Id, InterestId = toAdd});
+            }
 
             await _db.SaveChangesAsync();
         }
 
-        
 
-        public ActionResult Info()
+
+        public ActionResult Info(string project = null)
         {
-            //var users = _db.Users.Select(x => new
-            //{
-                
-            //})
+            var random = new Random(DateTime.UtcNow.Millisecond);
 
-            var user = GetCurrentAccount().User;
+            var users = _db.Users.ToList();
+
+            if (project != null)
+            {
+                users = users.Where(x => x.Project == project).ToList();
+            }
+
+            
+
+            var userNodes = users.Select(x => new Node
+            {
+                id = x.Id.ToString(),
+                email = "EmailExample",
+                group = "user",
+                img = x.PhotoLink,
+                skype = "SkypeExample",
+                title = x.FirstName + ' ' + x.LastName,
+                project = x.Project
+            });
+
+            var userIds = users.Select(u => u.Id).ToList();
+
+            var userInterests = _db.UserInterests.Where(x => userIds.Contains(x.UserId));
+            var userSkills = _db.UserSkills.Where(x => userIds.Contains(x.UserId));
+
+            var interestNodes = userInterests.Select(x => x.Interest).ToList().Select(x => new Node
+            {
+                id = x.Id.ToString(),
+                value = random.Next(0, 100),
+                img = @"http://unityingreensboro.org/wp-content/uploads/2011/04/music1.jpg",
+                title = x.TitleRu,
+                group = "interest"
+            });
+
+            var skillNodes = userSkills.Select(x => x.Skill).ToList().Select(x => new Node
+            {
+                id = x.Id.ToString(),
+                img = @"https://upload.wikimedia.org/wikipedia/en/c/cf/Daemon_tools_logo.png",
+                value = random.Next(0, 100),
+                title = x.Name,
+                group = "skill"
+            });
+
+
+            var interestEdges = userInterests.Select(x => new Edge
+            {
+                from = x.UserId.ToString(),
+                to = x.InterestId.ToString()
+            });
+
+            var skillEdges = userSkills.Select(x => new Edge
+            {
+                from = x.UserId.ToString(),
+                to = x.SkillId.ToString()
+            });
+
+            var nodes = userNodes.Concat(interestNodes).Concat(skillNodes);
+            var edges = interestEdges.Concat(skillEdges);
+
             return Json(new
             {
-                Name = user.FirstName + ' ' + user.LastName,
-                Skills = user.Skills.Select(x => new {Id = x.Id, Name = x.Name}),
-                Interests = user.Interests.Select(x => new { Id = x.Id, Name = x.TitleRu })
+                nodes,
+                edges
             }, JsonRequestBehavior.AllowGet);
         }
     }
