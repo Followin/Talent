@@ -1,0 +1,57 @@
+﻿@blue: #39c2d7;
+@blue_dark: #1a9cb0;
+@red: #eb6a5a;
+@green_dark: #7f993a;
+@green_lime: #a3c644;
+@gray_dark: #464547;
+@gray_medium: #666666;
+@gray: #999999;
+@gray_light: #cccccc;
+@white: #ffffff;
+@violet: #937ebd;
+@turquoise: #39b7ac;
+@yellow: #ecc134;
+@orange: #f0ad4d;
+@raspberry: #b32746;
+@plum: #8e244d;
+@black: #000000;
+
+.uui-switch {
+    border-radius: 20px;
+    border: none;
+    box-shadow: none;
+    z-index: 101;
+    height: 34px;
+
+    .bootstrap-switch-container {
+        height: 34px;
+        background-color: @gray_light;
+        -moz-transition: none;
+
+        .bootstrap-switch-handle-on {
+            border: none;
+            background-color: @gray_dark;
+            color: @white;
+            padding: 6px 14px;
+            height: 34px;
+        }
+
+        .bootstrap-switch-handle-off {
+            border: none;
+            background-color: @gray_light;
+            color: @white;
+            padding: 6px 14px;
+            height: 34px;
+        }
+
+        .bootstrap-switch-label {
+            border-radius: 15px;
+            width: 34px !important;
+            height: 34px;
+            background-color: darken(@gray_dark, 8%) ;
+            box-shadow: -12px 0 0 5px @gray_dark, 5px 0 0 5px @gray_light;
+            -webkit-box-shadow: -12px 0 0 5px @gray_dark, 5px 0 0 5px @gray_light;
+            -moz-box-shadow: -12px 0 0 5px @gray_dark, 5px 0 0 5px @gray_light;
+        }
+    }
+}

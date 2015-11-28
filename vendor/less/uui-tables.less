@@ -1,0 +1,233 @@
+﻿@import 'uui-fonts.less';
+
+@blue: #39c2d7;
+@blue_dark: #1a9cb0;
+@red: #eb6a5a;
+@green_dark: #7f993a;
+@green_lime: #a3c644;
+@gray_dark: #464547;
+@gray_medium: #666666;
+@gray: #999999;
+@gray_light: #cccccc;
+@white: #ffffff;
+@violet: #937ebd;
+@turquoise: #39b7ac;
+@yellow: #ecc134;
+@orange: #f0ad4d;
+@raspberry: #b32746;
+@plum: #8e244d;
+@black: #000000;
+
+.uui-table {
+    width: 100%;
+    border: 1px solid lighten(@gray, 33.5%);
+    border-collapse: collapse;
+    border-spacing: 0;
+
+    tr {
+        border-top: 1px solid #ddd;
+    }
+
+    td {
+        padding: 10px;
+        line-height: 1.4;
+        vertical-align: top;
+    }
+
+    thead {
+        tr {
+            border-bottom: 2px solid lighten(@gray, 26.5%);
+
+            th {
+                font-family: @Source_Sans_Pro_Semibold;
+                vertical-align: bottom;
+                text-align: left;
+                padding: 10px;
+                line-height: 1.4;
+                font-weight: normal;
+            }
+        }
+    }
+
+    tfoot {
+        tr {
+            border-top: 2px solid lighten(@gray, 26.5%);
+
+            th {
+                font-family: @Source_Sans_Pro_Semibold;
+                vertical-align: bottom;
+                text-align: left;
+                padding: 10px;
+                line-height: 1.4;
+                font-weight: normal;
+            }
+        }
+    }
+
+    &.stripe {
+        tbody tr {
+            &:nth-child(odd) {
+                background-color: lighten(@gray, 37.3%);
+            }
+        }
+    }
+
+    &.border {
+        tr {
+            td {
+                border: 1px solid lighten(@gray, 26.5%);
+            }
+
+            th {
+                border-right: 1px solid lighten(@gray, 26.5%);
+                border-left: 1px solid lighten(@gray, 26.5%);
+            }
+        }
+    }
+
+    &.sort {
+        thead {
+            th {
+                cursor: pointer;
+
+                &:hover {
+                    color: @gray_dark;
+
+                    i {
+                        color: @gray_dark;
+                    }
+                }
+
+                &.active {
+                    color: @gray_dark;
+                    border-bottom: 2px solid @gray_dark;
+
+                    i {
+                        color: @gray_dark;
+                    }
+                }
+            }
+        }
+    }
+
+    &.hover {
+        tbody {
+            tr {
+                &:hover {
+                    background-color: lighten(@gray, 35.5%);
+                }
+            }
+        }
+    }
+
+    &.treegrid {
+        .treegrid-caret {
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
+            float: left;
+            margin: 2px 10px 0 0;
+            width: 9px;
+        }
+    }
+
+    &.dataTable.no-footer {
+        border-bottom: 1px solid lighten(@gray, 33.5%);
+    }
+}
+
+.dataTables_wrapper {
+    .dataTables_length {
+        float: left;
+        padding: 15px;
+
+        label {
+            width: 100%;
+            font-weight: normal;
+            display: inline-block;
+            cursor: default;
+            margin-bottom: 0;
+
+            select {
+                width: 100px;
+                margin: 0 5px;
+            }
+        }
+    }
+
+    .dataTables_filter {
+        float: right;
+        padding: 15px;
+        margin-top: 0;
+
+        label {
+            width: 100%;
+            font-weight: normal;
+            display: inline-block;
+            margin-bottom: 0;
+
+            input {
+                width: 200px;
+                margin: 0 0 0 5px;
+            }
+        }
+    }
+    .dataTables_info {
+        margin-top: 8px;
+        padding: 15px;
+    }
+
+    .dataTables_paginate {
+        padding: 15px;
+        margin-top: 0;
+
+        .paginate_button {
+            position: relative;
+            padding: 6px 12px;
+            background: @white;
+            border: 1px solid @gray_light;
+            display: inline-block;
+            margin: 0 0 0 -1px;
+            color: @gray_dark !important;
+            font-size: 14px;
+
+            &:hover, &:focus {
+                border: 1px solid @gray_light;
+                color: @gray_dark !important;
+                background: lighten(@gray, 33.5%);
+            }
+
+            &.current {
+                border: 1px solid @gray_light;
+                color: @gray_dark !important;
+                background: lighten(@gray, 33.5%);
+
+                &:hover {
+                    border: 1px solid @gray_light;
+                    color: @gray_dark !important;
+                    background: lighten(@gray, 33.5%);
+                    cursor: default;
+                }
+            }
+
+            &.disabled {
+                border: 1px solid @gray_light;
+                color: @gray_light !important;
+                background: lighten(@gray, 33.5%);
+
+                &:hover {
+                    border: 1px solid @gray_light;
+                    color: @gray_light !important;
+                    background: lighten(@gray, 33.5%);
+                    cursor: default;
+                }
+            }
+        }
+    }
+
+    &.no-footer {
+        .dataTables_scrollBody {
+            border-bottom: 1px solid lighten(@gray, 33.5%);
+        }
+    }
+}

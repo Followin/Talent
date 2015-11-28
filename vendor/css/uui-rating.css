@@ -1,0 +1,1 @@
+.uui-rating{display:inline-block}.uui-rating .star{float:left;font-size:18px;padding:0 5px 0 0;color:#999}.uui-rating .star:hover{cursor:pointer}.uui-rating.error .star{color:#eb6a5a!important}.uui-rating.disable .star{color:#ccc!important}.uui-rating.disable .star.disable{cursor:not-allowed}

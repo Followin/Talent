@@ -1,0 +1,45 @@
+﻿@blue: #39c2d7;
+@blue_dark: #1a9cb0;
+@red: #eb6a5a;
+@green_dark: #7f993a;
+@green_lime: #a3c644;
+@gray_dark: #464547;
+@gray_medium: #666666;
+@gray: #999999;
+@gray_light: #cccccc;
+@white: #ffffff;
+@violet: #937ebd;
+@turquoise: #39b7ac;
+@yellow: #ecc134;
+@orange: #f0ad4d;
+@raspberry: #b32746;
+@plum: #8e244d;
+@black: #000000;
+
+.uui-search {
+    width: 100px;
+    height: 34px;
+    font-size: 14px;
+    border: 1px solid @gray_light;
+    background: @white url(../images/icons/search-icon-gray.svg) no-repeat 10px 8px;
+    background-size: 18px 18px;
+    padding: 0 5px 0 35px;
+    border-radius: 25px;
+    color: lighten(@gray, 20%);
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+
+    &:focus {
+        width: 250px;
+        border: 1px solid @gray;
+        color: @gray_medium;
+        -webkit-transition: all 0.3s ease;
+        -moz-transition: all 0.3s ease;
+        -o-transition: all 0.3s ease;
+        -ms-transition: all 0.3s ease;
+        transition: all 0.3s ease;
+    }
+}

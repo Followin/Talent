@@ -1,0 +1,123 @@
+﻿@import 'uui-icons.less';
+
+@blue: #39c2d7;
+@blue_dark: #1a9cb0;
+@red: #eb6a5a;
+@green_dark: #7f993a;
+@green_lime: #a3c644;
+@gray_dark: #464547;
+@gray_medium: #666666;
+@gray: #999999;
+@gray_light: #cccccc;
+@white: #ffffff;
+@violet: #937ebd;
+@turquoise: #39b7ac;
+@yellow: #ecc134;
+@orange: #f0ad4d;
+@raspberry: #b32746;
+@plum: #8e244d;
+@black: #000000;
+
+.uui-items-list {
+    width: 100%;
+    list-style: none;
+    margin: 0;
+
+    .item-body {
+        padding: 10px 20px;
+        margin: -1px 0 0 0;
+        display: table;
+        width: 100%;
+        border: 1px solid @gray_light;
+        position: relative;
+
+        &.active {
+            background: lighten(@gray_medium, 12%);
+            border-color: lighten(@gray_medium, 12%);
+            z-index: 2;
+
+            .item-section {
+                color: @white;
+            }
+        }
+
+        .activite-icon {
+            .uui-icon (inherit, inherit, inherit, inherit, inherit, inherit, left, 50px, 50px, 50px, none);
+        }
+    }
+
+    .item-line-body {
+        padding: 0 20px;
+        margin: 0;
+        display: table;
+        width: 100%;
+
+        .line {
+            border-left: 1px solid lighten(@gray, 20%);
+            margin: 0 0 0 25px;
+            position: relative;
+            padding: 10px 0;
+
+            .wrapper {
+                margin: 0 0 0 -25px;
+            }
+        }
+
+        .activite-icon {
+            .uui-icon (inherit, inherit, inherit, inherit, inherit, inherit, left, 50px, 50px, 50px, 1px solid lighten(@gray, 20%));
+        }
+
+        &.active {
+            background: lighten(@gray_medium, 12%);
+
+            .item-section{
+                color: @white;
+            }
+
+            .line {
+                border-left-color: lighten(@gray_medium, 12%);
+            }
+        }
+    }
+
+    .item-section {
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+    .icon {
+        width: 50px;
+
+        i {
+            font-size: 25px;
+            line-height: inherit;
+        }
+    }
+
+    .content {
+        padding: 0 0 0 20px;
+    }
+
+    &.hover {
+        .item-body, .item-line-body {
+            &:hover {
+                background: lighten(@gray, 35.5%);
+                cursor: pointer;
+                color: inherit;
+                z-index: 2;
+
+                .line {
+                    border-left-color: @gray_light;
+                }
+
+                .item-section {
+                    color: inherit;
+
+                    &.icon .uui-icon {
+                        border-color: @gray_light;
+                    }
+                }
+            }
+        }
+    }
+}

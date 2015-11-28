@@ -1,0 +1,401 @@
+﻿@import 'uui-icons.less';
+
+@blue: #39c2d7;
+@blue_dark: #1a9cb0;
+@red: #eb6a5a;
+@green_dark: #7f993a;
+@green_lime: #a3c644;
+@gray_dark: #464547;
+@gray_medium: #666666;
+@gray: #999999;
+@gray_light: #cccccc;
+@white: #ffffff;
+@violet: #937ebd;
+@turquoise: #39b7ac;
+@yellow: #ecc134;
+@orange: #f0ad4d;
+@raspberry: #b32746;
+@plum: #8e244d;
+@black: #000000;
+
+.uui-timeline {
+    .date {
+        text-align: right;
+        color: @gray_light;
+        font-size: 16px;
+    }
+
+    .timeline-wrapper {
+        width: 100%;
+        list-style: none;
+        margin: 0;
+
+        .timeline-body {
+            display: table;
+            width: 100%;
+            margin: 0 0 10px 0;
+
+            .timeline-section {
+                display: table-cell;
+                vertical-align: top;
+
+                &.icon {
+                    width: 40px;
+
+                    .timeline-icon {
+                        .uui-icon (inherit, inherit, inherit, inherit, inherit, inherit, left, 40px, 40px, 40px, none);
+
+                        i {
+                            font-size: 16px;
+                            line-height: inherit;
+                        }
+                    }
+                }
+
+                &.desk {
+                    .timeline-desk {
+                        background: lighten(@gray, 36%);
+                        position: relative;
+                        padding: 15px;
+                        display: inline-block;
+
+                        .timeline-arrow {
+                            border-bottom: 8px solid transparent;
+                            border-top: 8px solid transparent;
+                            display: block;
+                            width: 0;
+                            height: 0;
+                            position: absolute;
+                            top: 13px;
+                        }
+
+                        .time {
+                            font-size: 16px;
+
+                            i {
+                                color: @gray_light;
+                                font-size: 16px;
+                                padding: 0 10px 0 0;
+                            }
+
+                            span {
+                                font-size: 16px;
+                            }
+                        }
+
+                        .message {
+                            margin: 0;
+                        }
+                    }
+                }
+            }
+
+            &.left {
+                .timeline-section {
+                    &.icon {
+                        padding: 0 20px 0 0;
+                    }
+
+                    &.desk {
+                        .timeline-desk {
+                            float: left;
+
+                            .timeline-arrow {
+                                border-right: 8px solid lighten(@gray, 36%);
+                                left: -7px;
+                            }
+                        }
+                    }
+                }
+            }
+
+            &.right {
+                .timeline-section {
+                    &.icon {
+                        padding: 0 0 0 20px;
+                    }
+
+                    &.desk {
+                        .timeline-desk {
+                            float: right;
+
+                            .timeline-arrow {
+                                border-left: 8px solid lighten(@gray, 36%);
+                                right: -7px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &.vertical {
+        .date{
+            width: 100%;
+            text-align: center;
+        }
+
+        .timeline-wrapper {
+            margin: 10px 0 30px 0;
+            display: inline-block;
+
+            .timeline-body {
+                width: 100%;
+                margin:0 0 -20px 0 !important;
+
+                &.left{
+                    .line {
+                        border-right: 1px solid lighten(@gray, 20%);
+                        width: 50%;
+                        float: left;
+
+                        .item-wrapper {
+                            margin-right: -20px;
+                            float: right;
+
+                            .timeline-section {
+                                &.icon {
+                                    padding: 0 0 0 20px;
+                                }
+
+                                &.desk {
+                                    .timeline-desk {
+                                        float: right;
+
+                                        .timeline-arrow {
+                                            border-left: 8px solid lighten(@gray, 36%);
+                                            border-right: none !important;
+                                            right: -7px;
+                                            left: inherit;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                &.right{
+                    .line {
+                        border-left: 1px solid lighten(@gray, 20%);
+                        width: 50%;
+                        float: right;
+                        margin-right: 1px;
+
+                        .item-wrapper {
+                            margin-left: -20px;
+                            float: left;
+
+                            .timeline-section {
+                                &.icon {
+                                    padding: 0 20px 0 0;
+                                }
+
+                                &.desk {
+                                    .timeline-desk {
+                                        float: left;
+
+                                        .timeline-arrow {
+                                            border-right: 8px solid lighten(@gray, 36%);
+                                            border-left: none !important;
+                                            left: -7px;
+                                            right: inherit;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &.horisontal {
+        float: left;
+        width: 100%;
+        overflow: auto;
+
+        .timeline-wrapper {
+            float: left; 
+            height: 300px;
+            width: 10000px;
+
+            .timeline-body {
+                width: 300px;
+                float: left;
+                height: 100%;
+                position: relative;
+                margin: 0 -50px 0 0 !important;
+
+                .line {
+                    float: left;
+                    height: 50%;
+                    width: 100%;      
+                    position: absolute;          
+
+                    .item-wrapper {
+                        float: left;
+                        position: absolute;
+
+                        .date{
+                            position: absolute;
+                            left: 70px;
+                            text-align: center;
+                            color: @gray_light;
+                            font-size: 16px;
+                            width: 160px;
+                        }
+
+                        .timeline-section {
+                            float: left;
+
+                            &.desk {
+                                width: 100%;
+
+                                .timeline-desk {
+                                    width: 100%;
+
+                                    .timeline-arrow {
+                                        position: absolute;
+                                        border-left: 8px solid transparent;
+                                        border-right: 8px solid transparent;
+                                        display: block;
+                                        width: 0;
+                                        height: 0;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                &.top{
+                    .line {
+                        border-bottom: 1px solid lighten(@gray, 20%);
+                        margin-bottom: -1px;
+                        bottom: 50%;                   
+
+                        .item-wrapper {
+                            margin-bottom: -20px;
+                            bottom: 0;
+
+                            .date {
+                                bottom: -40px;
+                            }
+
+                            .timeline-section {
+                                float: left;
+
+                                &.icon {
+                                    margin: 20px 130px 0 130px;
+                                }
+
+                                &.desk {
+                                    .timeline-desk {
+                                        .timeline-arrow {
+                                            border-top: 8px solid lighten(@gray, 36%);
+                                            bottom: -16px;
+                                            left: 142px;
+                                            top: inherit;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                &.bottom{
+                    .line {
+                        border-top: 1px solid lighten(@gray, 20%);
+                        top: 50%;                     
+
+                        .item-wrapper {
+                            margin-top: -20px;
+                            top: 0;
+
+                            .date {
+                                top: -30px;
+                            }
+
+                            .timeline-section {
+                                float: left;
+
+                                &.icon {
+                                    margin: 0 130px 20px 130px;
+                                }
+
+                                &.desk {
+                                    .timeline-desk {
+                                        .timeline-arrow {
+                                            border-bottom: 8px solid lighten(@gray, 36%);
+                                            top: -16px;
+                                            left: 142px;
+                                            bottom: inherit;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &.uui-chat {
+        .timeline-wrapper {
+            .timeline-body {
+                .timeline-section {
+                    &.photo {
+                        width: 69px;
+                        height: 55px;
+                        padding: 0 0 0 14px;
+
+                        img {
+                            width: 100%;
+                        }
+                    }
+
+                    &.desk {
+                        .timeline-desk {
+                            min-height: 55px;
+                        }
+                    }
+                }
+
+                &.message {
+                    .uui-form-element {
+                        height: 55px;
+                        border-right: 0;
+                        resize: none;
+                    }
+
+                    .button {
+                        width: 55px;
+                        height: 55px;
+
+                        .uui-button {
+                            width: 100%;
+                            height: 100%;
+                        }
+                    }
+                }
+
+                &.right {
+                    .timeline-section {
+                        &.desk {
+                            .timeline-desk {
+                                float: none;
+                                display: block;
+                                padding: 10px 10px 10px 15px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

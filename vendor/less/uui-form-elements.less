@@ -1,0 +1,547 @@
+﻿@import 'uui-fonts.less';
+
+::-ms-clear {
+    display: none;
+}
+
+@blue: #39c2d7;
+@blue_dark: #1a9cb0;
+@red: #eb6a5a;
+@green_dark: #7f993a;
+@green_lime: #a3c644;
+@gray_dark: #464547;
+@gray_medium: #666666;
+@gray: #999999;
+@gray_light: #cccccc;
+@white: #ffffff;
+@violet: #937ebd;
+@turquoise: #39b7ac;
+@yellow: #ecc134;
+@orange: #f0ad4d;
+@raspberry: #b32746;
+@plum: #8e244d;
+@black: #000000;
+
+/* UUI Buttons */
+.uui-button {
+    display: inline-block;
+    padding: 6px 12px;
+    font-size: 15px;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid @gray;
+    background-color: @gray;
+    color: @white;
+    border-radius: 0px;
+    box-shadow: none;
+    height: 34px;
+
+    i {
+        font-size: 15px;
+    }
+
+    &:hover, &:focus, &:active {
+        background-color: darken(@gray, 8%);
+        border-color: darken(@gray, 8%);
+        box-shadow: none;
+    }
+
+    &.round {
+        border-radius: 5px;
+    }
+
+    &.shadow {
+        box-shadow: 0 4px @gray;
+    }
+
+    &.large {
+        padding: 10px 16px;
+        font-size: 18px;
+        height: 48px;
+
+        i {
+            font-size: 18px;
+        }
+    }
+
+    &.small {
+        padding: 4px 10px 6px 10px;
+        font-size: 13px;
+        height: 28px;
+
+        i {
+            font-size: 13px;
+        }
+    }
+
+    &.xsmall {
+        padding: 1px 5px 2px 5px;
+        font-size: 12px;
+        height: 22px;
+
+        i {
+            font-size: 12px;
+        }
+    }
+
+    &.disable {
+        cursor: default;
+        background-color: lighten(@gray, 32%) !important;
+        border-color: lighten(@gray, 32%)!important;
+        color: @gray_light;
+
+        i {
+            color: @gray_light;
+        }
+
+        &:hover, &:focus, &:active{
+            background-color: lighten(@gray, 32%)!important;
+            border-color: lighten(@gray, 32%)!important;
+        }
+    }
+}
+
+.horizontal-group {
+    position: relative;
+    display: inline-block;
+
+    .uui-button {
+        float: left;
+        position: relative;
+    }
+}
+
+.vertical-group {
+    position: relative;
+    display: inline-block;
+
+    .uui-button {
+        display: block;
+        float: none;
+        width: 100%;
+        max-width: 100%;
+        position: relative;
+    }
+}
+
+/* UUI Text Field & Select */
+.uui-form-element {
+    width: 100%;
+    font-size: 15px;
+    border: 1px solid @gray_light;
+    padding: 6px 12px;
+    vertical-align: middle;
+    color: @gray;
+    height: 34px;
+
+    &:focus {
+        color: @gray_medium;
+        border: 1px solid black;
+    }
+
+    &.large {
+        padding: 10px 16px;
+        font-size: 18px;
+        height: 48px;
+    }
+
+    &.small {
+        padding: 5px 10px;
+        font-size: 13px;
+        height: 28px;
+    }
+
+    &.round {
+        border-radius: 5px;
+    }
+
+    &.disable {
+        cursor: not-allowed;
+        background-color: lighten(@gray, 36%);
+    }
+
+    &.error {
+        border: 1px solid @red;
+    }
+
+    &[multiple="multiple"] {
+        height: auto;
+    }
+}
+
+select.uui-form-element {
+    padding: 5px 12px 6px 12px;
+    height: 34px;
+
+    &.large {
+        padding: 9px 16px 10px 16px;
+        height: 48px;
+    }
+
+    &.small {
+        padding: 4px 10px 5px 10px;
+        height: 28px;
+    }
+
+    &.error +.btn-group .btn {
+        border: 1px solid @red;
+    }
+}
+
+.help-text {
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 0px;
+    color: @gray;
+}
+
+textarea.uui-form-element {
+    height: auto;
+    min-height: 68px;
+}
+
+/* UUI Checkbox & Radio Buttons */
+input[type=radio].uui-form-element,
+input[type=checkbox].uui-form-element {
+    margin: 3px 8px 0 0;
+    float: left;
+    width: auto;
+    border: none;
+    outline: none !important;
+    height: auto;
+    padding: 0;
+
+    +label {
+        font-size: 15px;
+        font-weight: normal;
+        color: @gray;
+        cursor: pointer;
+        margin: 0;
+        display: inline;
+    }
+
+    &.error {
+        border: none;
+
+        +label {
+            color: @red;
+        }
+    }
+
+    &.disable {
+        background-color: inherit;
+
+        +label {
+            color: @gray_light;
+            cursor: default;
+        }
+    }
+}
+
+.vertical-group {
+    p {
+        margin: 0 0 5px 0;
+        display: inline-block;
+        width: 100%;
+
+        &.checkbox, &.radio {
+            margin-bottom: 8px !important;
+
+            label {
+                margin: 0 0 5px 0 !important;
+                height: 10px;
+            }
+
+            input.large {
+                +label {
+                    margin: 0 0 7px 0 !important;
+                    height: 8px;
+                }
+            }
+        }
+    }
+}
+
+.horizontal-group {
+    p {
+        display: inline-block;
+        margin: 0 10px 0 0;
+    }
+}
+
+/* UUI custom Checkbox & Radio Buttons */
+.checkbox, .radio {
+    input {
+        float: none;
+        margin: 0;
+
+        &.large {
+            +label {
+                padding-left: 30px;
+                display: inline-block !important;
+            }
+
+            +label:before {
+                width: 22px;
+                height: 22px;
+                top: -2px;
+            }
+
+            +label:after {
+                width: 16px;
+                height: 16px;
+                font-size: 16px;
+                padding-top: 1px;
+                top: 1px;
+            }
+        }
+    }
+
+    label {
+        padding-left: 25px;
+        display: inline-block !important;
+
+        &:before {
+            margin-left: 0;
+        }
+
+        &:after {
+            margin-left: 0;
+            padding-top: 3px;
+        }
+    }
+}
+
+/* UUI custom Drop-down */
+.uui-form-element.bootstrap-select {
+    padding: 0px;
+    border: none;
+
+    .dropdown-menu {
+        border-radius: 0px;
+        margin: 0;
+
+        .disabled a {
+            color: @gray_light;
+        }
+            
+        li {
+            a {
+                padding: 6px 20px;
+                color: @gray_dark;
+            } 
+        }
+
+        dt {
+            font-family: @Source_Sans_Pro_Semibold;
+            color: @gray;
+            font-weight: normal;
+        }
+
+        .bootstrap-select-searchbox {
+            padding: 2px 8px 8px 8px;
+
+            .form-control {
+                border-radius: 0;
+                width: 100%;
+                font-size: 15px;
+                border: 1px solid @gray_light;
+                padding: 6px 12px;
+                vertical-align: middle;
+                color: @gray;
+                height: 34px;
+
+                &:focus {
+                    color: @gray_medium;
+                    border: 1px solid black;
+                    box-shadow: none;
+                }
+            }
+        }
+
+        .active > a {
+            background-color: lighten(@gray, 36%);
+        }
+    }
+
+    .dropdown-toggle{
+        box-shadow: none;
+    }
+
+    .btn {
+        border: 1px solid @gray_light;
+        background-color: @white;
+        border-radius: 0;
+        width: 100%;
+        height: 100%;
+        outline: none !important;
+        height: 34px;
+
+        span {
+            color: @gray;
+        }
+
+        &:hover, &:focus, &:active {
+            border: 1px solid black;
+            box-shadow: none;
+            background-color: @white;
+            outline: none;
+
+            span {
+                color: @gray_medium;
+            }
+        }
+    }
+
+    &.round {
+        .btn {
+            border-radius: 5px;
+        }
+    }
+
+    &.large {
+        .dropdown-menu ul li a span {
+            font-size: 18px;
+        }
+
+        .btn {
+            padding: 10px 18px;
+            font-size: 18px;
+            height: 48px;
+
+            span {
+                font-size: 18px;
+            }
+        }
+
+        &.btn-group.show-tick {            
+            .dropdown-menu {         
+                li { 
+                    &.selected {
+                        a {
+                            .check-mark {
+                                margin-top: 10px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &.small {
+        .dropdown-menu ul li a span {
+            font-size: 12px;
+        }
+
+        .btn {
+            padding: 5px 10px;
+            font-size: 12px;
+            height: 28px;
+
+            span {
+                font-size: 12px;
+            }
+        }
+
+        &.btn-group.show-tick {            
+            .dropdown-menu {         
+                li { 
+                    &.selected {
+                        a {
+                            .check-mark {
+                                margin-top: 8px;
+                                font-size: 11px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &.btn-group.show-tick {            
+        .dropdown-menu {         
+            li { 
+                &.selected {
+                    a {
+                        .check-mark {
+                            margin-top: 6px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* UUI custom File-input */
+.fileinput {
+    .uui-button {
+        .fileinput-new, .fileinput-exists {
+            font-size: 15px;
+            color: @white;
+        }
+
+        &+.fileinput-filename {
+            font-size: 15px;
+
+            &+.close {
+                font-size: 20px;
+            }
+        }
+
+        &.large {
+            .fileinput-new, .fileinput-exists {
+                font-size: 18px;
+            }
+
+            &+.fileinput-filename {
+                font-size: 18px;
+
+                &+.close {
+                    font-size: 24px;
+                }
+            }
+        }
+
+        &.small {
+            .fileinput-new, .fileinput-exists {
+                font-size: 13px;
+            }
+
+            &+.fileinput-filename {
+                font-size: 13px;
+
+                &+.close {
+                    font-size: 16px;
+                }
+            }
+        }
+
+        &.xsmall {
+            .fileinput-new, .fileinput-exists {
+                font-size: 12px;
+            }
+
+            &+.fileinput-filename {
+                font-size: 12px;
+
+                &+.close {
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+
+    .close {
+        text-shadow: none;
+        opacity: 1;
+        font-weight: normal;
+        margin-left: 5px;
+        float: none;
+        color: @gray_dark;
+    }
+}
