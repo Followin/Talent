@@ -2,3 +2,9 @@
   margin: 13px 15px 0;
   float: left;
 }
+
+
+#user-photo {
+  height: 100px;
+  width: 100px;
+}
