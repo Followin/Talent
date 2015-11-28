@@ -7,8 +7,20 @@ namespace Talent.Web.Models
 {
     public class Node
     {
-        public string Id { get; set; }
+        public string id { get; set; }
 
-        public int Value { get; set; }
+        public int value { get; set; }
+
+        public string img { get; set; }
+
+        public string title { get; set; }
+
+        public string group { get; set; }
+
+        public string project { get; set; }
+
+        public string email { get; set; }
+
+        public string skype { get; set; }
     }
 }

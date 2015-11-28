@@ -21,6 +21,6 @@ namespace Talent.DAL.Models
 
         public virtual ICollection<Synonym> Synonyms { get; set; }
 
-        public virtual ICollection<User> Users { get; set; } 
+        public virtual ICollection<UserInterest> Users { get; set; } 
     }
 }
