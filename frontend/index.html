@@ -23,11 +23,17 @@
   <!-- Scroll for UUI Sidebar -->
   <link rel="stylesheet" href="../vendor/css/lib/components/jquery.mCustomScrollbar.css" />
   <link rel="stylesheet" href="../vendor/fonts/font-awesome/css/font-awesome.min.css" />
+  <!-- VIS -->
+  <script type="text/javascript" src="../vendor/vis/vis.js"></script>
   <link href="../vendor/vis/vis.css" rel="stylesheet" type="text/css" />
 
   <!--[if lt IE 9]>
   <script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js">       </script>
   <![endif]-->
+
+  <!-- custom styles -->
+  <link rel="stylesheet" href="css/custom-styles.css" />
+  <link rel="stylesheet" href="css/side-bar.css"/>
 </head>
 <body>
 <div class="wrapper">
@@ -39,9 +45,9 @@
             <span class="fa fa-reorder"></span>
           </div>
         </div>
-        <!--<div class="epam-logo">
+        <div class="epam-logo">
           <img src="../vendor/images/Logo_Epam_White.svg" alt="logo" width="86" />
-        </div>-->
+        </div>
         <a href="#" class="brand-logo">
           <img src="img/logo.png" alt="logo">
           Connections
@@ -90,42 +96,167 @@
     </div>
   </header>
   <aside>
-    <div class="uui-side-bar blue">
-      <ul class="sidebar-menu">
-        <li>
-          <a href="#">
-            <i class="fa fa-book"></i>
-            <span>Item 1</span>
-          </a>
-        </li>
-        <li class="sub-menu active">
-          <a href="#">
-            <i class="fa fa-cogs"></i>
-            <span>Item 2</span>
-            <div class="fa fa-caret-right arrow"></div>
-          </a>
-          <ul class="sub">
-            <li>
-              <a href="#">
-                <p>
-                  <span>Sub Item 1</span>
-                </p>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <p>
-                  <span>Sub Item 2</span>
-                </p>
-              </a>
-            </li>
-          </ul>
-        </li>
-      </ul>
+    <div class="uui-side-bar blue side-bar" data-animate="true">
+      <div class="user-profile">
+        <div class="uui-person-horizontal-profile blue">
+          <div class="person-profile-body">
+            <div class="person-profile-section">
+              <div class="person-profile-photo">
+                <img id="user-photo" src="img/no_photo.png" alt=""/>
+              </div>
+              <div class="person-profile-info">
+                <h3 id="user-name">First Name Last Name</h3>
+                <p id="job-title">Job Title</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <ul class="sidebar-menu">
+          <li class="sub-menu contacts" id="contacts">
+            <a href="#">
+              <i class="fa fa-book"></i>
+              <span>Contacts</span>
+              <div class="fa fa-caret-right arrow"></div>
+            </a>
+            <ul class="sub uui-items-list hover">
+              <li class="item-line-body" id="contact-skype">
+                <a class="line" id="skype-link" href="callto://d.veshkin">
+                  <div class="wrapper">
+                    <div class="item-section icon">
+                    <span class="uui-icon round white activite-icon">
+                        <i class="fa fa-skype blue"></i>
+                    </span>
+                    </div>
+                    <div class="item-section content">
+                      d.veshkin
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li class="item-line-body" id="contact-tel">
+                <a class="line" id="tel-link" href="tel://+380660063278">
+                  <div class="wrapper">
+                    <div class="item-section icon">
+                    <span class="uui-icon round white activite-icon">
+                        <i class="fa fa-phone red"></i>
+                    </span>
+                    </div>
+                    <div class="item-section content">
+                      +38(066)006-32-78
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li class="item-line-body" id="contact-email">
+                <a class="line" id="email-link" href="mailto://dimaveshkin@gmail.com">
+                  <div class="wrapper">
+                    <div class="item-section icon">
+                    <span class="uui-icon round white activite-icon">
+                      <i class="fa fa-envelope yellow"></i>
+                    </span>
+                    </div>
+                    <div class="item-section content">
+                      dimaveshkin@gmail.com
+                    </div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="sub-menu hobbys" id="hobbys">
+            <a href="#">
+              <i class="fa fa-magic"></i>
+              <span>Interests</span>
+              <div class="fa fa-caret-right arrow"></div>
+            </a>
+            <ul class="sub uui-items-list hover">
+              <li class="item-line-body" id="hobby-curling" data-node-target="curling">
+                <div class="line">
+                  <div class="wrapper">
+                    <div class="item-section icon">
+                    <span class="uui-icon round white activite-icon">
+                        <i class="fa fa-phone red"></i>
+                    </span>
+                    </div>
+                    <div class="item-section content hobby-name" >
+                      Curling
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="item-line-body" id="hobby-football" data-node-target="football">
+                <div class="line">
+                  <div class="wrapper">
+                    <div class="item-section icon">
+                    <span class="uui-icon round white activite-icon">
+                      <i class="fa fa-futbol-o yellow"></i>
+                    </span>
+                    </div>
+                    <div class="item-section content hobby-name">
+                      Football
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </li>
+          <li class="sub-menu skills" id="skills">
+            <a href="#">
+              <i class="fa fa-cogs"></i>
+              <span>Skills</span>
+              <div class="fa fa-caret-right arrow"></div>
+            </a>
+            <ul class="sub uui-items-list hover">
+              <li class="item-line-body" id="skill-java" data-node-target="java">
+                <div class="line">
+                  <div class="wrapper">
+                    <div class="item-section icon">
+                    <span class="uui-icon round white activite-icon">
+                        <i class="fa fa-coffee blue"></i>
+                    </span>
+                    </div>
+                    <div class="item-section content hobby-name" >
+                      JAVA
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="item-line-body" id="akill-android" data-node-target="android">
+                <div class="line">
+                  <div class="wrapper">
+                    <div class="item-section icon">
+                    <span class="uui-icon round white activite-icon">
+                      <i class="fa fa-android lime-green"></i>
+                    </span>
+                    </div>
+                    <div class="item-section content hobby-name">
+                      ANDROID
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="hobby-profile">
+        <div class="uui-person-horizontal-profile white">
+          <div class="person-profile-body">
+            <div class="person-profile-section">
+              <div class="person-profile-photo">
+                <img id="hobby-photo" src="img/no_photo.png" alt=""/>
+              </div>
+              <div class="person-profile-info">
+                <h3 id="hobby-name">Some Hobby Name Here</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </aside>
   <div class="uui-main-container">
-    <main id="mynetwork">
+    <main id="tree-network">
     </main>
   </div>
 </div>
@@ -144,39 +275,10 @@
       $(this).val('');
     }
   });
-  // create an array with nodes
-  var nodes = new vis.DataSet([
-    {id: 1, label: 'Node 1'},
-    {id: 2, label: 'Node 2'},
-    {id: 3, label: 'Node 3'},
-    {id: 4, label: 'Node 4'},
-    {id: 5, label: 'Node 5'}
-  ]);
-
-  // create an array with edges
-  var edges = new vis.DataSet([
-    {from: 1, to: 3},
-    {from: 1, to: 2},
-    {from: 2, to: 4},
-    {from: 2, to: 5}
-  ]);
-
-  // create a network
-  var container = document.getElementById('mynetwork');
-
-  //    $("#mynetwork").height(window.height - 60);
-  var data = {
-    nodes: nodes,
-    edges: edges
-  }
-  console.log(window.innerHeight - 60);
-  var options = {
-    height: window.innerHeight - 60 + "px"
-  };
-  var network = new vis.Network(container, data, options);
 </script>
 <script>
   UUI.Vertical_Menu.init({open:true});
 </script>
+<script src="js/tree.js"></script>
 </body>
 </html>
