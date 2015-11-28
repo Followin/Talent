@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="../vendor/css/uui-all.css" />
 
   <!-- Custom CSS Styles -->
-  <link rel="stylesheet" href="css/custom-styles.css" />
+  <link rel="stylesheet" href="css/styles.css" />
 
   <!-- Scroll for UUI Sidebar -->
   <link rel="stylesheet" href="../vendor/css/lib/components/jquery.mCustomScrollbar.css" />
@@ -35,14 +35,14 @@
             <span class="fa fa-reorder"></span>
           </div>
         </div>
-        <div class="epam-logo">
+        <!--<div class="epam-logo">
           <img src="../vendor/images/Logo_Epam_White.svg" alt="logo" width="86" />
-        </div>
+        </div>-->
         <a href="#" class="brand-logo">
-          <i class="fa fa-magic"></i>
-          TALENTS
+          <img src="img/logo.png" alt="logo">
+          Connections
         </a>
-        <ul class="uui-navigation nav navbar-nav right">
+        <ul class="uui-navigation nav navbar-nav left">
           <li>
             <a href="#">TREE</a>
           </li>
@@ -54,6 +54,30 @@
           </li>
           <li>
             <a href="#">EXIT</a>
+          </li>
+        </ul>
+        <ul class="uui-navigation nav navbar-nav right">
+          <input type="text" class="uui-search" value="Search" />
+          <li class="dropdown uui-profile-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <span class="profile-name">Profile Name</span>
+              <div class="profile-photo">
+                <img src="img/no-avatar.png" alt="">
+              </div>
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu" >
+              <li class="title">Section Title</li>
+              <li class="dropdown-menu-links">
+                <a href="#" target="_blank">Section Link</a>
+              </li>
+              <li class="dropdown-menu-links">
+                <a href="#" target="_blank">Section Link</a>
+              </li>
+              <li class="dropdown-menu-links">
+                <a href="#" target="_blank">Section Link</a>
+              </li>
+            </ul>
           </li>
         </ul>
       </nav>
@@ -103,6 +127,16 @@
 <script src="../vendor/js/uui-core.min.js" type="text/javascript"></script>
 <script src="../vendor/js/lib/components/jquery.mCustomScrollbar.concat.min.js"></script>
 <script type="text/javascript">
+  //search
+  $('.uui-search').blur(function () {
+    if (!$(this).val()) {
+      $(this).val('Search');
+    }
+  }).focus(function () {
+    if ($(this).val() == 'Search') {
+      $(this).val('');
+    }
+  });
   // create an array with nodes
   var nodes = new vis.DataSet([
     {id: 1, label: 'Node 1'},
