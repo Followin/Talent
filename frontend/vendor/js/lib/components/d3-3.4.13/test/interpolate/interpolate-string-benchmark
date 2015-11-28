@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-var d3 = require("../../");
+var d3 = require("../../index");
 
 var n = +process.argv[2],
     p = +process.argv[3],
