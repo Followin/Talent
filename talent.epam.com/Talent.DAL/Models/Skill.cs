@@ -15,6 +15,6 @@ namespace Talent.DAL.Models
 
         public string Name { get; set; }
 
-        public virtual ICollection<User> Users { get; set; }
+        public virtual ICollection<UserSkill> Users { get; set; }
     }
 }

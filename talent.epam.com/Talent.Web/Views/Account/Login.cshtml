@@ -1,0 +1,32 @@
+﻿@model Talent.Web.Models.LoginModel
+
+@{
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>title</title>
+</head>
+<body>
+<div>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(false)
+        <div>
+            @Html.LabelFor(m => m.Login)
+            @Html.EditorFor(m => m.Login)
+        </div>
+        <div>
+            @Html.LabelFor(m => m.Password)
+            @Html.EditorFor(m => m.Password)
+        </div>
+        
+        
+        <input type="submit" value="login" />
+    }
+</div>
+</body>
+</html>

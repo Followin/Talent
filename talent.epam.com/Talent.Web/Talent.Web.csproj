@@ -118,8 +118,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\SocialsController.cs" />
+    <Compile Include="Models\Edge.cs" />
     <Compile Include="Models\LinkedInAuthModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\Node.cs" />
     <Compile Include="Models\SocialsViewModel.cs" />
     <Compile Include="Parser\E3SParser.cs" />
     <Compile Include="Global.asax.cs">

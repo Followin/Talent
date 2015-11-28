@@ -17,8 +17,12 @@ namespace Talent.DAL.Models
 
         public string LastName { get; set; }
 
-        public virtual ICollection<Interest> Interests { get; set; }
+        public string PhotoLink { get; set; }
 
-        public virtual ICollection<Skill> Skills { get; set; }
+        public string Project { get; set; }
+
+        public virtual ICollection<UserInterest> Interests { get; set; }
+
+        public virtual ICollection<UserSkill> Skills { get; set; }
     }
 }

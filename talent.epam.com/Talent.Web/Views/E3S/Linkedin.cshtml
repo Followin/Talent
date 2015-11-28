@@ -1,0 +1,14 @@
+﻿@model Talent.Web.Models.LinkedInAuthModel
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>title</title>
+</head>
+<body>
+<div>
+      <a href="@string.Format("https://www.linkedin.com/uas/oauth2/authorization?response_type=code&client_id={0}&redirect_uri={1}&state={2}", Model.ApiId, Model.RedirectUri, Model.State)">Linked in</a>
+</div>
+</body>
+</html>
