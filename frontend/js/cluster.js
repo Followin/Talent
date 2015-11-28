@@ -1,4 +1,4 @@
-(function () {
+var cluster = (function () {
     network.on("selectNode", function (params) {
         if (params.nodes.length == 1) {
             if (network.isCluster(params.nodes[0]) == true) {
@@ -9,7 +9,7 @@
 
 
     var count = 0;
-    return function clusterByProp(query) {
+    return function (query) {
         count++;
         var teamStyle = {
                 borderWidth: 3,
