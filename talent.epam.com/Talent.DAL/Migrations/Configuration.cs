@@ -142,7 +142,7 @@ namespace Talent.DAL.Migrations
                 Category = "Religion",
                 Synonyms = new Synonym[]
                 {
-                    @".*(христиан|ислам|будд|православ|духовн|языч|религи(?<!(это.*|как.*|наша.*))(?!.*атеи)(?<!.*атеи).*"
+                    @".*(христиан|ислам|будд|православ|духовн|языч|религи(?<!(это.*|как.*|наша.*)))(?!.*атеи)(?<!.*атеи).*"
                 }
             });
 
@@ -242,7 +242,137 @@ namespace Talent.DAL.Migrations
                 }
             });
 
+            context.Interests.Add(new Interest
+            {
+                Id = Guid.NewGuid(),
+                TitleRu = "Фотоискусство",
+                TitleEn = "Photo",
+                Category = "Entertainment",
+                Synonyms = new Synonym[]
+                {
+                    @".*(photo|фото|кадр|сним[аок]).*"
+                }
+            });
 
+            context.Interests.Add(new Interest
+            {
+                Id = Guid.NewGuid(),
+                TitleRu = "Рэп",
+                TitleEn = "Rap",
+                Category = "Music",
+                Synonyms = new Synonym[]
+                {
+                    @".*(rap|rnb|r'n'b|рэп).*"
+                }
+            });
+
+            context.Interests.Add(new Interest
+            {
+                Id = Guid.NewGuid(),
+                TitleRu = "Литература",
+                TitleEn = "Literature",
+                Category = "Entertainment",
+                Synonyms = new Synonym[]
+                {
+                    @".*(read|literatur|чита|литератур).*"
+                }
+            });
+
+            context.Interests.Add(new Interest
+            {
+                Id = Guid.NewGuid(),
+                TitleRu = "Аниме",
+                TitleEn = "Anime",
+                Category = "Entertainment",
+                Synonyms = new Synonym[]
+                {
+                    @".*(amine|аниме).*"
+                }
+            });
+
+            context.Interests.Add(new Interest
+            {
+                Id = Guid.NewGuid(),
+                TitleRu = "Точные науки",
+                TitleEn = "Technical sciences",
+                Category = "Science",
+                Synonyms = new Synonym[]
+                {
+                    @".*(геометр|математ|физик|астроном).*"
+                }
+            });
+
+            context.Interests.Add(new Interest
+            {
+                Id = Guid.NewGuid(),
+                TitleRu = "Гуманитарные науки",
+                TitleEn = "Humanitarian sciences",
+                Category = "Science",
+                Synonyms = new Synonym[]
+                {
+                    @".*(биолог|ботаник|географ).*"
+                }
+            });
+
+            context.Interests.Add(new Interest
+            {
+                Id = Guid.NewGuid(),
+                TitleRu = "Покер",
+                TitleEn = "Poker",
+                Category = "Entertainment",
+                Synonyms = new Synonym[]
+                {
+                    @".*(покер|poker).*"
+                }
+            });
+
+            context.Interests.Add(new Interest
+            {
+                Id = Guid.NewGuid(),
+                TitleRu = "Велосипед",
+                TitleEn = "Bicycle",
+                Category = "Sport",
+                Synonyms = new Synonym[]
+                {
+                    @".*(велос|bike|bicycle|bmx).*"
+                }
+            });
+
+            context.Interests.Add(new Interest
+            {
+                Id = Guid.NewGuid(),
+                TitleRu = "Татуировки",
+                TitleEn = "Tatoos",
+                Category = "Entertainment",
+                Synonyms = new Synonym[]
+                {
+                    @".*(tatoo|тату(?<!с)).*"
+                }
+            });
+
+            context.Interests.Add(new Interest
+            {
+                Id = Guid.NewGuid(),
+                TitleRu = "Рок",
+                TitleEn = "Rock",
+                Category = "Music",
+                Synonyms = new Synonym[]
+                {
+                    @".*rock(?<!.*roll).*"
+                }
+            });
+
+            context.Interests.Add(new Interest
+            {
+                Id = Guid.NewGuid(),
+                TitleRu = "Танцы",
+                TitleEn = "Danse",
+                Category = "Art",
+                Synonyms = new Synonym[]
+                {
+                    @".*(dans[ie]|танц|балет|хореограф).*"
+                }
+            });
 
             context.Accounts.Add(new Account
             {
