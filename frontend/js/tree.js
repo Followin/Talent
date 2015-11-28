@@ -237,7 +237,7 @@ var options = {
     groups: {
         useDefaultGroups: true,
         user: {
-            shape: "circularImage"
+/*            shape: "circularImage" */
         }
     }
 };
