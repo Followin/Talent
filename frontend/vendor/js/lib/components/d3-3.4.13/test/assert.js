@@ -1,5 +1,5 @@
 var assert = require("assert"),
-    _ = require("../");
+    _ = require("../index");
 
 assert = module.exports = Object.create(assert);
 
