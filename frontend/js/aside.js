@@ -18,34 +18,34 @@ function renderUserAside(node) {
 
 
 
-network.on("selectNode", function (params) {
-    var rootNode = nodes.get(params.nodes[0]);
-    var connectedNodesID = network.getConnectedNodes(params.nodes[0]);
-    if(rootNode.group==="user") {
-        $("#hobby-profile").addClass("hide");
-        $("#user-profile").removeClass("hide");
-        var connectedHobbys = [];
-        var connectedSkills = [];
-        for (var i = 0, length = connectedNodesID.length; i < length; i++) {
-            var item = nodes.get(connectedNodesID[i]);
-            if (item.group === "interest") {
-                connectedHobbys.push(item);
-            }
-            else {
-                connectedSkills.push(item);
-            }
-        }
-        renderUserAside(rootNode);
-        $("#hobbys-list").html(hobbysTemplate({items: connectedHobbys}));
-        $("#skills-list").html(skillsTemplate({items: connectedSkills}));
-    }
-    else {
-        $("#user-profile").addClass("hide");
-        $("#hobby-profile").removeClass("hide");
-        var connectedPeople = [];
-        for (var i = 0, length = connectedNodesID.length; i < length; i++) {
-            connectedPeople.push(nodes.get(connectedNodesID[i]));
-        }
-        $("#people-list").html(peopleTemplate({items: connectedPeople}));
-    }
-});
+//network.on("selectNode", function (params) {
+//    var rootNode = nodes.get(params.nodes[0]);
+//    var connectedNodesID = network.getConnectedNodes(params.nodes[0]);
+//    if(rootNode.group==="user") {
+//        $("#hobby-profile").addClass("hide");
+//        $("#user-profile").removeClass("hide");
+//        var connectedHobbys = [];
+//        var connectedSkills = [];
+//        for (var i = 0, length = connectedNodesID.length; i < length; i++) {
+//            var item = nodes.get(connectedNodesID[i]);
+//            if (item.group === "interest") {
+//                connectedHobbys.push(item);
+//            }
+//            else {
+//                connectedSkills.push(item);
+//            }
+//        }
+//        renderUserAside(rootNode);
+//        $("#hobbys-list").html(hobbysTemplate({items: connectedHobbys}));
+//        $("#skills-list").html(skillsTemplate({items: connectedSkills}));
+//    }
+//    else {
+//        $("#user-profile").addClass("hide");
+//        $("#hobby-profile").removeClass("hide");
+//        var connectedPeople = [];
+//        for (var i = 0, length = connectedNodesID.length; i < length; i++) {
+//            connectedPeople.push(nodes.get(connectedNodesID[i]));
+//        }
+//        $("#people-list").html(peopleTemplate({items: connectedPeople}));
+//    }
+//});
