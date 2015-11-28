@@ -132,6 +132,7 @@
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\Node.cs" />
     <Compile Include="Models\SocialsViewModel.cs" />
+    <Compile Include="Models\UserForParse.cs" />
     <Compile Include="Parser\E3SParser.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -140,6 +141,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\MessageService.cs" />
     <Compile Include="Static\Constants.cs" />
+    <Compile Include="Static\UsersForParse.cs" />
     <Compile Include="Static\UsersList.cs" />
   </ItemGroup>
   <ItemGroup>

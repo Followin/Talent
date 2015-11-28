@@ -126,7 +126,7 @@ namespace Talent.Web.Controllers
 
             htmlDocument.LoadHtml(str);
 
-            var skillsNodes = htmlDocument.DocumentNode.SelectNodes("//li[@class='skill']");
+            var skillsNodes = htmlDocument.DocumentNode.SelectNodes("//li[contains(@class,'skill') and not(contains(@class,'see-more'))]");
 
             var skills = new List<string>();
 
@@ -257,7 +257,10 @@ namespace Talent.Web.Controllers
             var existingFriends = _db.Users.Where(x => friendIds.Contains(x.VkId));
             foreach (var existingFriend in existingFriends)
             {
-                _db.UserUsers.Add(new UserUser {UserId = existingFriend.Id, FriendId = user.Id});
+                if (!AreUsersFriends(existingFriend.Id, user.Id))
+                {
+                    _db.UserUsers.Add(new UserUser {UserId = existingFriend.Id, FriendId = user.Id});
+                }
             }
 
             await _db.SaveChangesAsync();
@@ -308,6 +311,8 @@ namespace Talent.Web.Controllers
 
                 var users = userSkills.Select(x => x.User).ToList();
 
+                var currentUser = GetCurrentAccount().User;
+
                 var userNodes = users.Select(x => new Node
                 {
                     id = x.Id.ToString(),
@@ -316,7 +321,9 @@ namespace Talent.Web.Controllers
                     img = x.PhotoLink,
                     skype = "SkypeExample",
                     title = x.FirstName + ' ' + x.LastName,
-                    project = x.Project
+                    project = x.Project,
+                    phone = x.Phone,
+                    isFriend = AreUsersFriends(currentUser.Id, x.Id)
                 });
 
                 var skillNodes = userSkills.Select(x => x.Skill).ToList().Select(x => new Node
@@ -372,6 +379,8 @@ namespace Talent.Web.Controllers
 
                 var users = userInterests.Select(x => x.User).ToList();
 
+                var currentUser = GetCurrentAccount().User;
+
                 var userNodes = users.Select(x => new Node
                 {
                     id = x.Id.ToString(),
@@ -380,7 +389,9 @@ namespace Talent.Web.Controllers
                     img = x.PhotoLink,
                     skype = "SkypeExample",
                     title = x.FirstName + ' ' + x.LastName,
-                    project = x.Project
+                    project = x.Project,
+                    phone = x.Phone,
+                    isFriend = AreUsersFriends(currentUser.Id, x.Id)
                 });
 
                 var interestNodes = userInterests.Select(x => x.Interest).ToList().Select(x => new Node
@@ -410,7 +421,7 @@ namespace Talent.Web.Controllers
             return Json(false, JsonRequestBehavior.AllowGet);
         }
 
-        public async Task<ActionResult> Info(string project = null, string userId = null, string skillId = null, string interestId = null)
+        public async Task<ActionResult> Info(string project = null, string userId = null, string skillId = null, string interestId = null, bool onlyWithProject = false)
         {
             var random = new Random(DateTime.UtcNow.Millisecond);
 
@@ -441,6 +452,13 @@ namespace Talent.Web.Controllers
                 users = users.Where(x => x.Project == project).ToList();
             }
 
+            if (onlyWithProject)
+            {
+                users = users.Where(x => !string.IsNullOrWhiteSpace(x.Project)).ToList();
+            }
+
+            var currentUser = GetCurrentAccount().User;
+
             var userNodes = users.Select(x => new Node
             {
                 id = x.Id.ToString(),
@@ -449,7 +467,9 @@ namespace Talent.Web.Controllers
                 img = x.PhotoLink,
                 skype = "SkypeExample",
                 title = x.FirstName + ' ' + x.LastName,
-                project = x.Project
+                project = x.Project,
+                phone = x.Phone,
+                isFriend = AreUsersFriends(currentUser.Id, x.Id)
             });
 
             var userIds = users.Select(u => u.Id).ToList();
@@ -496,6 +516,13 @@ namespace Talent.Web.Controllers
                 nodes,
                 edges
             }, JsonRequestBehavior.AllowGet);
+        }
+
+        private Boolean AreUsersFriends(Guid first, Guid second)
+        {
+            return
+                _db.UserUsers.Any(
+                    x => (x.UserId == first && x.FriendId == second) || (x.UserId == second && x.FriendId == first));
         }
     }
 }

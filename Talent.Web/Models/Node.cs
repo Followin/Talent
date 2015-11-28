@@ -21,6 +21,10 @@ namespace Talent.Web.Models
 
         public string email { get; set; }
 
+        public string phone { get; set; }
+
         public string skype { get; set; }
+
+        public bool isFriend { get; set; }
     }
 }
