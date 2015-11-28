@@ -21,8 +21,14 @@ namespace Talent.DAL.Models
 
         public string Project { get; set; }
 
+        public string Email { get; set; }
+
+        public string Phone { get; set; }
+
         public virtual ICollection<UserInterest> Interests { get; set; }
 
         public virtual ICollection<UserSkill> Skills { get; set; }
+
+        public virtual ICollection<UserUser> Friends { get; set; }
     }
 }
