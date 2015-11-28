@@ -19,6 +19,8 @@ namespace Talent.DAL
 
         public DbSet<UserInterest> UserInterests { get; set; }
 
+        public DbSet<UserUser> UserUsers { get; set; }
+
         public EfContext()
         {
             Database.SetInitializer(new EfInitializer());
@@ -28,6 +30,8 @@ namespace Talent.DAL
         {
             modelBuilder.Entity<UserSkill>().HasKey(x => new {x.UserId, x.SkillId});
             modelBuilder.Entity<UserInterest>().HasKey(x => new {x.UserId, x.InterestId});
+            modelBuilder.Entity<UserUser>().HasKey(x => new {x.UserId, x.FriendId});
+            modelBuilder.Entity<User>().HasMany(x => x.Friends).WithRequired(x => x.Friend).WillCascadeOnDelete(false);
         }
     }
 }

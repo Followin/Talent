@@ -72,11 +72,21 @@ namespace Talent.Web.Controllers
             return View(new SocialsViewModel() { LinkedIn = linkedInModel, Vk = vkModel });
         }
 
+        public async Task<ActionResult> Current()
+        {
+            return await Info(userId: GetCurrentAccount().User.Id.ToString());
+        }
+
         public async Task<ActionResult> LinkedIn(string code)
         {
             await GetLinkedInSkills(code);
 
             return View("CloseTab");
+        }
+
+        public async Task<ActionResult> Projects()
+        {
+            return Json(await _db.Users.Select(x => x.Project).Distinct().ToListAsync(), JsonRequestBehavior.AllowGet);
         }
 
         public async Task<ViewResult> Vk(string code)
@@ -234,26 +244,202 @@ namespace Talent.Web.Controllers
 
             foreach (var toAdd in resultInterestGuids.Except(currentUserInterests))
             {
-                _db.UserInterests.Add(new UserInterest { UserId = user.Id, InterestId = toAdd});
+                _db.UserInterests.Add(new UserInterest { UserId = user.Id, InterestId = toAdd });
+            }
+
+            await _db.SaveChangesAsync();
+
+            var friendsUrl = string.Format("{0}?user_id={1}", @"https://api.vk.com/method/friends.get", user.VkId);
+            result = await _client.GetStringAsync(friendsUrl);
+            resultObj = JObject.Parse(result);
+            var friendIds = (resultObj["response"] as JArray).Select(x => x.ToString());
+
+            var existingFriends = _db.Users.Where(x => friendIds.Contains(x.VkId));
+            foreach (var existingFriend in existingFriends)
+            {
+                _db.UserUsers.Add(new UserUser {UserId = existingFriend.Id, FriendId = user.Id});
             }
 
             await _db.SaveChangesAsync();
         }
 
+        public ActionResult Search(string search)
+        {
+            var skills = _db.Skills.ToList().Where(x => x.Name.IndexOf(search, StringComparison.Ordinal) != -1);
+            var users = _db.Users.ToList().Where(x => (x.FirstName + x.LastName).IndexOf(search, StringComparison.Ordinal) != -1);
+            var interests =
+                _db.Interests.ToList()
+                    .Where(
+                        x =>
+                            x.TitleRu.IndexOf(search, StringComparison.OrdinalIgnoreCase) != -1 ||
+                            x.TitleEn.IndexOf(search, StringComparison.OrdinalIgnoreCase) != -1);
 
+            return Json(new
+            {
+                skills = skills.Select(x => new { id = x.Id, title = x.Name }),
+                interests = interests.Select(x => new { id = x.Id, title = x.TitleEn + "/" + x.TitleRu }),
+                users = users.Select(x => new { id = x.Id, title = x.FirstName + ' ' + x.LastName })
+            }, JsonRequestBehavior.AllowGet);
+        }
 
-        public ActionResult Info(string project = null)
+        private async Task<ActionResult> GetBySkillId(string skillId, string project = null)
+        {
+            if (skillId != null)
+            {
+                Guid id;
+                if (!Guid.TryParse(skillId, out id))
+                {
+                    return Json(new { status = "not found" }, JsonRequestBehavior.AllowGet);
+                }
+
+                var skill = await _db.Skills.FirstOrDefaultAsync(x => x.Id == id);
+
+                if (skill == null)
+                {
+                    return Json(new { status = "not found" }, JsonRequestBehavior.AllowGet);
+                }
+
+                var userSkills = _db.UserSkills.Where(x => x.SkillId == skill.Id);
+
+                if (project != null)
+                {
+                    userSkills = userSkills.Where(x => x.User.Project == project);
+                }
+
+                var users = userSkills.Select(x => x.User).ToList();
+
+                var userNodes = users.Select(x => new Node
+                {
+                    id = x.Id.ToString(),
+                    email = "EmailExample",
+                    group = "user",
+                    img = x.PhotoLink,
+                    skype = "SkypeExample",
+                    title = x.FirstName + ' ' + x.LastName,
+                    project = x.Project
+                });
+
+                var skillNodes = userSkills.Select(x => x.Skill).ToList().Select(x => new Node
+                {
+                    id = x.Id.ToString(),
+                    img = @"https://upload.wikimedia.org/wikipedia/en/c/cf/Daemon_tools_logo.png",
+                    value = x.Users.Count,
+                    title = x.Name,
+                    group = "skill"
+                });
+
+                var skillEdges = userSkills.Select(x => new Edge
+                {
+                    from = x.UserId.ToString(),
+                    to = x.SkillId.ToString()
+                });
+
+                var nodes = userNodes.Concat(skillNodes);
+
+                return Json(new
+                {
+                    nodes,
+                    edges = skillEdges,
+                }, JsonRequestBehavior.AllowGet);
+            }
+
+            return Json(false, JsonRequestBehavior.AllowGet);
+        }
+
+        private async Task<ActionResult> GetByInterestId(string interestId, string project = null)
+        {
+            if (interestId != null)
+            {
+                Guid id;
+                if (!Guid.TryParse(interestId, out id))
+                {
+                    return Json(new { status = "not found" });
+                }
+
+                var interest = await _db.Interests.FirstOrDefaultAsync(x => x.Id == id);
+
+                if (interest == null)
+                {
+                    return Json(new { status = "not found" }, JsonRequestBehavior.AllowGet);
+                }
+
+                var userInterests = _db.UserInterests.Where(x => x.InterestId == interest.Id);
+
+                if (project != null)
+                {
+                    userInterests = userInterests.Where(x => x.User.Project == project);
+                }
+
+                var users = userInterests.Select(x => x.User).ToList();
+
+                var userNodes = users.Select(x => new Node
+                {
+                    id = x.Id.ToString(),
+                    email = "EmailExample",
+                    group = "user",
+                    img = x.PhotoLink,
+                    skype = "SkypeExample",
+                    title = x.FirstName + ' ' + x.LastName,
+                    project = x.Project
+                });
+
+                var interestNodes = userInterests.Select(x => x.Interest).ToList().Select(x => new Node
+                {
+                    id = x.Id.ToString(),
+                    img = @"https://upload.wikimedia.org/wikipedia/en/c/cf/Daemon_tools_logo.png",
+                    value = x.Users.Count,
+                    title = x.TitleEn + '/' + x.TitleRu,
+                    group = "interest"
+                });
+
+                var interestEdges = userInterests.Select(x => new Edge
+                {
+                    from = x.UserId.ToString(),
+                    to = x.InterestId.ToString()
+                });
+
+                var nodes = userNodes.Concat(interestNodes);
+
+                return Json(new
+                {
+                    nodes,
+                    edges = interestEdges,
+                }, JsonRequestBehavior.AllowGet);
+            }
+
+            return Json(false, JsonRequestBehavior.AllowGet);
+        }
+
+        public async Task<ActionResult> Info(string project = null, string userId = null, string skillId = null, string interestId = null)
         {
             var random = new Random(DateTime.UtcNow.Millisecond);
 
+            if (skillId != null)
+            {
+                return await GetBySkillId(skillId, project);
+            }
+
+            if (interestId != null)
+            {
+                return await GetByInterestId(interestId, project);
+            }
+
             var users = _db.Users.ToList();
 
-            if (project != null)
+            if (userId != null)
+            {
+                Guid id;
+                if (!Guid.TryParse(userId, out id))
+                {
+                    return Json(new { status = "not found" }, JsonRequestBehavior.AllowGet);
+                }
+
+                users = users.Where(x => x.Id == id).ToList();
+            }
+            else if (project != null)
             {
                 users = users.Where(x => x.Project == project).ToList();
             }
-
-            
 
             var userNodes = users.Select(x => new Node
             {
