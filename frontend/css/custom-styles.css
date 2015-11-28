@@ -1,0 +1,40 @@
+.uui-side-bar {
+    width: 400px;
+}
+
+.uui-person-horizontal-profile .person-profile-body .person-profile-section .person-profile-photo {
+    width: 75px;
+    height: 75px;
+}
+.uui-person-horizontal-profile .person-profile-body .person-profile-section .person-profile-photo img {
+    width: 75px;
+}
+
+.uui-side-bar .sidebar-menu {
+    margin-top: 0;
+}
+
+.uui-side-bar .sidebar-menu .sub>li>a p span {
+    max-width: 230px;
+}
+
+.uui-side-bar .sidebar-menu .sub>li>a p span.contact-label {
+    margin-right: 10px;
+    color: #444;
+}
+
+.uui-side-bar .sidebar-menu .sub.uui-items-list>li>a {
+    padding: 10px 0;
+}
+
+.uui-items-list .item-line-body {
+    padding: 0 0 0 20px;
+}
+
+.uui-side-bar.blue .sidebar-menu .sub.uui-items-list>li>a:hover {
+    background: transparent;
+}
+
+.sub.uui-items-list.hover .item-body:hover, .sub.uui-items-list.hover .item-line-body:hover {
+    background: #c9eef4;;
+}
