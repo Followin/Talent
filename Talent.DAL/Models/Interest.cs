@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,7 +10,8 @@ namespace Talent.DAL.Models
 {
     public class Interest
     {
-        public int Id { get; set; }
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public Guid Id { get; set; }
 
         public string TitleRu { get; set; }
 
@@ -18,6 +21,6 @@ namespace Talent.DAL.Models
 
         public virtual ICollection<Synonym> Synonyms { get; set; }
 
-        public virtual ICollection<User> Users { get; set; } 
+        public virtual ICollection<UserInterest> Users { get; set; } 
     }
 }

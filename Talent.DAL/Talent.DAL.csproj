@@ -50,15 +50,19 @@
   <ItemGroup>
     <Compile Include="EfContext.cs" />
     <Compile Include="EfInitializer.cs" />
-    <Compile Include="Migrations\201511271348192_inits.cs" />
-    <Compile Include="Migrations\201511271348192_inits.Designer.cs">
-      <DependentUpon>201511271348192_inits.cs</DependentUpon>
+    <Compile Include="Migrations\201511281733012_init.cs" />
+    <Compile Include="Migrations\201511281733012_init.Designer.cs">
+      <DependentUpon>201511281733012_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Interest.cs" />
-    <Compile Include="Models\StringModel.cs" />
+    <Compile Include="Models\Account.cs" />
+    <Compile Include="Models\Skill.cs" />
     <Compile Include="Models\Synonym.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserInterest.cs" />
+    <Compile Include="Models\UserSkill.cs" />
+    <Compile Include="Models\UserUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -66,8 +70,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201511271348192_inits.resx">
-      <DependentUpon>201511271348192_inits.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201511281733012_init.resx">
+      <DependentUpon>201511281733012_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
