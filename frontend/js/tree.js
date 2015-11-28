@@ -4,7 +4,7 @@ var DIR = "./";
 var nodes = new vis.DataSet([
     {
         id: "1",
-        img: "http://cs620218.vk.me/v620218901/111e6/k39Hlf7bo04.jpg",
+        image: "http://cs620218.vk.me/v620218901/111e6/k39Hlf7bo04.jpg",
         title: "Sergey Rud",
         group: "user",
         email: "EmailExample",
@@ -13,7 +13,7 @@ var nodes = new vis.DataSet([
     },
     {
         id: "2",
-        img: "http://cs620218.vk.me/v620218901/111e6/k39Hlf7bo04.jpg",
+        image: "http://cs620218.vk.me/v620218901/111e6/k39Hlf7bo04.jpg",
         title: "Sergey Rud",
         group: "user",
         email: "EmailExample",
@@ -22,7 +22,7 @@ var nodes = new vis.DataSet([
     },
     {
         id: "3",
-        img: "http://cs620218.vk.me/v620218901/111e6/k39Hlf7bo04.jpg",
+        image: "http://cs620218.vk.me/v620218901/111e6/k39Hlf7bo04.jpg",
         title: "Sergey Rud",
         group: "user",
         email: "EmailExample",
@@ -31,7 +31,7 @@ var nodes = new vis.DataSet([
     },
     {
         id: "4",
-        img: "http://cs620218.vk.me/v620218901/111e6/k39Hlf7bo04.jpg",
+        image: "http://cs620218.vk.me/v620218901/111e6/k39Hlf7bo04.jpg",
         title: "Sergey Rud",
         group: "user",
         email: "EmailExample",
@@ -40,7 +40,7 @@ var nodes = new vis.DataSet([
     },
     {
         id: "5",
-        img: "http://cs620218.vk.me/v620218901/111e6/k39Hlf7bo04.jpg",
+        image: "http://cs620218.vk.me/v620218901/111e6/k39Hlf7bo04.jpg",
         title: "Sergey Rud",
         group: "user",
         email: "EmailExample",
@@ -49,7 +49,7 @@ var nodes = new vis.DataSet([
     },
     {
         id: "6",
-        img: "http://cs620218.vk.me/v620218901/111e6/k39Hlf7bo04.jpg",
+        image: "http://cs620218.vk.me/v620218901/111e6/k39Hlf7bo04.jpg",
         title: "Sergey Rud",
         group: "user",
         email: "EmailExample",
@@ -58,7 +58,7 @@ var nodes = new vis.DataSet([
     },
     {
         id: "7",
-        img: "http://cs620218.vk.me/v620218901/111e6/k39Hlf7bo04.jpg",
+        image: "http://cs620218.vk.me/v620218901/111e6/k39Hlf7bo04.jpg",
         title: "Sergey Rud",
         group: "user",
         email: "EmailExample",
@@ -67,7 +67,7 @@ var nodes = new vis.DataSet([
     },
     {
         id: "8",
-        img: "http://cs620218.vk.me/v620218901/111e6/k39Hlf7bo04.jpg",
+        image: "http://cs620218.vk.me/v620218901/111e6/k39Hlf7bo04.jpg",
         title: "Sergey Rud",
         group: "user",
         email: "EmailExample",
@@ -76,7 +76,7 @@ var nodes = new vis.DataSet([
     },
     {
         id: "9",
-        img: "http://cs620218.vk.me/v620218901/111e6/k39Hlf7bo04.jpg",
+        image: "http://cs620218.vk.me/v620218901/111e6/k39Hlf7bo04.jpg",
         title: "Sergey Rud",
         group: "user",
         email: "EmailExample",
@@ -85,7 +85,7 @@ var nodes = new vis.DataSet([
     },
     {
         id: "10",
-        img: "http://cs620218.vk.me/v620218901/111e6/k39Hlf7bo04.jpg",
+        image: "http://cs620218.vk.me/v620218901/111e6/k39Hlf7bo04.jpg",
         title: "Sergey Rud",
         group: "user",
         email: "EmailExample",
@@ -95,7 +95,7 @@ var nodes = new vis.DataSet([
     {
         id: "11",
         value: 31,
-        img: null,
+        image: null,
         title: "Популярная музыка",
         group: "interest",
         email: null,
@@ -104,7 +104,7 @@ var nodes = new vis.DataSet([
     {
         id: "12",
         value: 11,
-        img: null,
+        image: null,
         title: "Баскетбол",
         group: "interest",
         email: null,
@@ -113,7 +113,7 @@ var nodes = new vis.DataSet([
     {
         id: "13",
         value: 31,
-        img: null,
+        image: null,
         title: "Футбол",
         group: "interest",
         email: null,
@@ -122,7 +122,7 @@ var nodes = new vis.DataSet([
     {
         id: "14",
         value: 16,
-        img: null,
+        image: null,
         title: "Классическая музыка",
         group: "interest",
         email: null,
@@ -131,9 +131,18 @@ var nodes = new vis.DataSet([
     {
         id: "15",
         value: 58,
-        img: null,
+        image: null,
         title: "Бокс",
         group: "interest",
+        email: null,
+        skype: null
+    },
+    {
+        id: "16",
+        value: 58,
+        image: null,
+        title: "C#",
+        group: "skill",
         email: null,
         skype: null
     }
@@ -220,13 +229,36 @@ var edges = new vis.DataSet([
     {
         from: "10",
         to: "13"
+    },
+    {
+        from: "1",
+        to: "16"
+    },
+    {
+        from: "2",
+        to: "16"
+    },
+    {
+        from: "3",
+        to: "16"
+    },
+    {
+        from: "4",
+        to: "16"
+    },
+    {
+        from: "5",
+        to: "16"
+    },
+    {
+        from: "6",
+        to: "16"
     }
 ]);
 
 // create a network
 var container = document.getElementById('tree-network');
 
-//    $("#mynetwork").height(window.height - 60);
 var data = {
     nodes: nodes,
     edges: edges
@@ -237,40 +269,8 @@ var options = {
     groups: {
         useDefaultGroups: true,
         user: {
-/*            shape: "circularImage" */
+            shape: "circularImage"
         }
     }
 };
 var network = new vis.Network(container, data, options);
-network.on("selectNode", function(params) {
-    nodes.clear();
-    nodes.add([
-        {
-            id: "a8532967-b695-e511-9bf9-6c71d968fe62",
-            value: 28,
-            img: null,
-            title: "Классическая музыка",
-            group: "interest",
-            email: null,
-            skype: null
-        },
-        {
-            id: "a9532967-b695-e511-9bf9-6c71d968fe62",
-            value: 51,
-            img: null,
-            title: "Поэзия",
-            group: "interest",
-            email: null,
-            skype: null
-        },
-        {
-            id: "aa532967-b695-e511-9bf9-6c71d968fe62",
-            value: 66,
-            img: null,
-            title: "Популярная музыка",
-            group: "interest",
-            email: null,
-            skype: null
-        }
-    ])
-});

@@ -91,16 +91,15 @@
   </header>
   <aside>
     <div class="uui-side-bar blue side-bar" data-animate="true">
-      <div class="user-profile">
-        <div class="uui-person-horizontal-profile blue">
+      <div id="user-profile" class="user-profile">
+        <div class="uui-person-horizontal-profile white">
           <div class="person-profile-body">
             <div class="person-profile-section">
               <div class="person-profile-photo">
                 <img id="user-photo" src="img/no_photo.png" alt=""/>
               </div>
               <div class="person-profile-info">
-                <h3 id="user-name">First Name Last Name</h3>
-                <p id="job-title">Job Title</p>
+                <h3 id="user-name"></h3>
               </div>
             </div>
           </div>
@@ -114,43 +113,40 @@
             </a>
             <ul class="sub uui-items-list hover">
               <li class="item-line-body" id="contact-skype">
-                <a class="line" id="skype-link" href="callto://d.veshkin">
+                <a class="line" id="skype-link" href="callto://">
                   <div class="wrapper">
                     <div class="item-section icon">
                     <span class="uui-icon round white activite-icon">
                         <i class="fa fa-skype blue"></i>
                     </span>
                     </div>
-                    <div class="item-section content">
-                      d.veshkin
+                    <div id="skype-text-link" class="item-section content">
                     </div>
                   </div>
                 </a>
               </li>
               <li class="item-line-body" id="contact-tel">
-                <a class="line" id="tel-link" href="tel://+380660063278">
+                <a class="line" id="tel-link" href="tel://">
                   <div class="wrapper">
                     <div class="item-section icon">
                     <span class="uui-icon round white activite-icon">
                         <i class="fa fa-phone red"></i>
                     </span>
                     </div>
-                    <div class="item-section content">
-                      +38(066)006-32-78
+                    <div id="tel-link-text" class="item-section content">
                     </div>
                   </div>
                 </a>
               </li>
               <li class="item-line-body" id="contact-email">
-                <a class="line" id="email-link" href="mailto://dimaveshkin@gmail.com">
+                <a class="line" id="email-link" href="mailto://">
                   <div class="wrapper">
                     <div class="item-section icon">
                     <span class="uui-icon round white activite-icon">
                       <i class="fa fa-envelope yellow"></i>
                     </span>
                     </div>
-                    <div class="item-section content">
-                      dimaveshkin@gmail.com
+                    <div id="email-link-text" class="item-section content">
                     </div>
                   </div>
                 </a>
@@ -163,35 +159,25 @@
               <span>Interests</span>
               <div class="fa fa-caret-right arrow"></div>
             </a>
-            <ul class="sub uui-items-list hover">
-              <li class="item-line-body" id="hobby-curling" data-node-target="curling">
-                <div class="line">
-                  <div class="wrapper">
-                    <div class="item-section icon">
-                    <span class="uui-icon round white activite-icon">
-                        <i class="fa fa-phone red"></i>
-                    </span>
-                    </div>
-                    <div class="item-section content hobby-name" >
-                      Curling
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li class="item-line-body" id="hobby-football" data-node-target="football">
-                <div class="line">
-                  <div class="wrapper">
-                    <div class="item-section icon">
-                    <span class="uui-icon round white activite-icon">
-                      <i class="fa fa-futbol-o yellow"></i>
-                    </span>
-                    </div>
-                    <div class="item-section content hobby-name">
-                      Football
-                    </div>
-                  </div>
-                </div>
-              </li>
+            <ul id="hobbys-list" class="sub uui-items-list hover">
+                <script type="text/template" id="hobbys-item">
+                    <% _.each(items, function(elem) { %>
+                        <li class="item-line-body" data-node-target="<%= elem.id %>">
+                            <div class="line">
+                                <div class="wrapper">
+                                    <div class="item-section icon">
+                                            <span class="uui-icon round white activite-icon">
+                                                <i class="fa fa-phone red"></i>
+                                            </span>
+                                    </div>
+                                    <div class="item-section content hobby-name" >
+                                        <%= elem.title %>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    <% }); %>
+                </script>
             </ul>
           </li>
           <li class="sub-menu skills" id="skills">
@@ -200,40 +186,30 @@
               <span>Skills</span>
               <div class="fa fa-caret-right arrow"></div>
             </a>
-            <ul class="sub uui-items-list hover">
-              <li class="item-line-body" id="skill-java" data-node-target="java">
-                <div class="line">
-                  <div class="wrapper">
-                    <div class="item-section icon">
-                    <span class="uui-icon round white activite-icon">
-                        <i class="fa fa-coffee blue"></i>
-                    </span>
-                    </div>
-                    <div class="item-section content hobby-name" >
-                      JAVA
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li class="item-line-body" id="akill-android" data-node-target="android">
-                <div class="line">
-                  <div class="wrapper">
-                    <div class="item-section icon">
-                    <span class="uui-icon round white activite-icon">
-                      <i class="fa fa-android lime-green"></i>
-                    </span>
-                    </div>
-                    <div class="item-section content hobby-name">
-                      ANDROID
-                    </div>
-                  </div>
-                </div>
-              </li>
+            <ul id="skills-list" class="sub uui-items-list hover">
+                <script type="text/template" id="skills-item">
+                    <% _.each(items, function(elem) { %>
+                    <li class="item-line-body" data-node-target="<%= elem.id %>">
+                        <div class="line">
+                            <div class="wrapper">
+                                <div class="item-section icon">
+                                            <span class="uui-icon round white activite-icon">
+                                                <i class="fa fa-phone red"></i>
+                                            </span>
+                                </div>
+                                <div class="item-section content hobby-name" >
+                                    <%= elem.title %>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <% }); %>
+                </script>
             </ul>
           </li>
         </ul>
       </div>
-      <div class="hobby-profile">
+      <div id="hobby-profile" class="hobby-profile hide">
         <div class="uui-person-horizontal-profile white">
           <div class="person-profile-body">
             <div class="person-profile-section">
@@ -243,11 +219,41 @@
               <div class="person-profile-info">
                 <h3 id="hobby-name">Some Hobby Name Here</h3>
               </div>
+
             </div>
           </div>
         </div>
+        <ul class="sidebar-menu">
+              <li class="sub-menu people" id="people">
+                  <a href="#">
+                      <i class="fa fa-book"></i>
+                      <span>Contacts</span>
+                      <div class="fa fa-caret-right arrow"></div>
+                  </a>
+                  <ul id="people-list" class="sub uui-items-list hover">
+                      <script type="text/template" id="people-item">
+                          <% _.each(items, function(elem) { %>
+                          <li class="item-line-body" data-node-target="<%= elem.id %>">
+                              <div class="line">
+                                  <div class="wrapper">
+                                      <div class="item-section icon">
+                                            <span class="uui-icon round white activite-icon">
+                                                <img class="people-item-img" src="<%= elem.image %>" alt="<%= elem.title %>"/>
+                                            </span>
+                                      </div>
+                                      <div class="item-section content hobby-name" >
+                                          <%= elem.title %>
+                                      </div>
+                                  </div>
+                              </div>
+                          </li>
+                          <% }); %>
+                      </script>
+                  </ul>
+            </li>
+            </ul>
+          </div>
       </div>
-    </div>
   </aside>
   <div class="uui-main-container">
     <main id="tree-network">
@@ -257,6 +263,7 @@
 <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
 <script src="../vendor/js/uui-core.min.js" type="text/javascript"></script>
 <script src="../vendor/js/lib/components/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="../vendor/js/underscore-min.js"></script>
 <script type="text/javascript">
   //search
   $('.uui-search').blur(function () {
@@ -273,5 +280,6 @@
   UUI.Vertical_Menu.init({open:true});
 </script>
 <script src="js/tree.js"></script>
+<script src="js/aside.js"></script>
 </body>
 </html>
