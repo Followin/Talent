@@ -317,10 +317,10 @@ namespace Talent.Web.Controllers
                 var userNodes = users.Select(x => new Node
                 {
                     id = x.Id.ToString(),
-                    email = "EmailExample",
+                    email = x.Email ?? "EmailExample",
                     group = "user",
                     image = x.PhotoLink,
-                    skype = "SkypeExample",
+                    skype = x.Phone ?? "SkypeExample",
                     title = x.FirstName + ' ' + x.LastName,
                     project = x.Project,
                     phone = x.Phone,
@@ -385,10 +385,10 @@ namespace Talent.Web.Controllers
                 var userNodes = users.Select(x => new Node
                 {
                     id = x.Id.ToString(),
-                    email = "EmailExample",
+                    email = x.Email ?? "EmailExample",
                     group = "user",
                     image = x.PhotoLink,
-                    skype = "SkypeExample",
+                    skype = x.Phone ?? "SkypeExample",
                     title = x.FirstName + ' ' + x.LastName,
                     project = x.Project,
                     phone = x.Phone,
@@ -463,10 +463,10 @@ namespace Talent.Web.Controllers
             var userNodes = users.Select(x => new Node
             {
                 id = x.Id.ToString(),
-                email = "EmailExample",
+                email = x.Email ?? "EmailExample",
                 group = "user",
                 image = x.PhotoLink,
-                skype = "SkypeExample",
+                skype = x.Phone ?? "SkypeExample",
                 title = x.FirstName + ' ' + x.LastName,
                 project = x.Project,
                 phone = x.Phone,

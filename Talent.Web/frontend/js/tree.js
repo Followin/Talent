@@ -10,8 +10,8 @@ $.ajax(
         url: "http://localhost:50408/socials/info",
         success: function (data, statusText) {
             result = data;
-            edges = new vis.DataSet(result.edges);
-            nodes = new vis.DataSet(result.nodes);
+            window.edges = new vis.DataSet(result.edges);
+            window.nodes = new vis.DataSet(result.nodes);
 
 
 
@@ -34,6 +34,7 @@ $.ajax(
             };
             window.network = new vis.Network(container, data, options);
 
+            //cluster.js
             var cluster = function () {
                 network.on("selectNode", function (params) {
                     if (params.nodes.length == 1) {
@@ -75,22 +76,22 @@ $.ajax(
                             clusterNodeProperties: {
                                 id: 'cluster' + count,
                                 borderWidth: 3,
-                                shape: 'icon',
-                                icon: {
-                                    face: 'FontAwesome',
-                                    code: '\uf1ae',
-                                    size: 50,
-                                    color: '#57169a'
-                                },
-                                label: 'Team'
+                                shape: 'circle',
+//                                icon: {
+//                                    face: 'FontAwesome',
+//                                    code: '\uf1ae',
+//                                    size: 50,
+//                                    color: '#57169a'
+//                                },
+                                label: query.value
                             }
                         };
                     network.cluster(clusterOptionsByData);
-                    network.clusterByConnection(clusterOptionsByData.clusterNodeProperties.id, { clusterNodeProperties: teamStyle });
+//                    network.clusterByConnection(clusterOptionsByData.clusterNodeProperties.id, { clusterNodeProperties: teamStyle });
                 }
             };
 
-            cluster();
+            cluster = cluster();
             cluster({ prop: 'project', value: 'd0' });
 
             //aside.js
