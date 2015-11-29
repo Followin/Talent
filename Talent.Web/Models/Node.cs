@@ -11,7 +11,7 @@ namespace Talent.Web.Models
 
         public int value { get; set; }
 
-        public string img { get; set; }
+        public string image { get; set; }
 
         public string title { get; set; }
 

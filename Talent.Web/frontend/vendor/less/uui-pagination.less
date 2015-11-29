@@ -1,0 +1,59 @@
+@blue: #39c2d7;
+@blue_dark: #1a9cb0;
+@red: #eb6a5a;
+@green_dark: #7f993a;
+@green_lime: #a3c644;
+@gray_dark: #464547;
+@gray_medium: #666666;
+@gray: #999999;
+@gray_light: #cccccc;
+@white: #ffffff;
+@violet: #937ebd;
+@turquoise: #39b7ac;
+@yellow: #ecc134;
+@orange: #f0ad4d;
+@raspberry: #b32746;
+@plum: #8e244d;
+@black: #000000;
+
+.uui-pagination {
+    display: inline-block;
+    list-style: none;
+    margin: 0;
+
+    > li {
+        display: inline;
+
+        > a {
+            position: relative;
+            float: left;
+            padding: 6px 12px;
+            margin-left: -1px;
+            text-decoration: none;
+            color: lighten(@gray_medium, 12%);
+            background: @white;
+            border: 1px solid @gray_light;
+            font-size: 14px;
+
+            &:hover, &:focus {
+                color: @gray_dark;
+                background: lighten(@gray, 33.5%);
+            }
+        }
+
+        &.active {
+            > a {
+                color: @gray_dark;
+                background: lighten(@gray, 33.5%);
+            }
+        }
+
+        &.disable {
+            > a {
+                color: @gray_light;
+                background: lighten(@gray, 33.5%);
+                cursor: default;
+            }
+        }
+    }
+}

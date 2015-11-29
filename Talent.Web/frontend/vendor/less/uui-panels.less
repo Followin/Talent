@@ -1,0 +1,106 @@
+﻿@blue: #39c2d7;
+@blue_dark: #1a9cb0;
+@red: #eb6a5a;
+@green_dark: #7f993a;
+@green_lime: #a3c644;
+@gray_dark: #464547;
+@gray_medium: #666666;
+@gray: #999999;
+@gray_light: #cccccc;
+@white: #ffffff;
+@violet: #937ebd;
+@turquoise: #39b7ac;
+@yellow: #ecc134;
+@orange: #f0ad4d;
+@raspberry: #b32746;
+@plum: #8e244d;
+@black: #000000;
+
+.uui-info-panel-horizontal,
+.uui-info-panel-vertical {
+    position: relative;
+
+    .info-panel-body {
+        position: relative;
+        z-index: 10;
+        display: table;
+        width: 100%;
+
+        .info-panel-section {
+            display: table-cell;
+            vertical-align: middle;
+            padding: 15px;
+        }
+    }
+
+    .info-panel-footer {
+        position: relative;
+        z-index: 20;
+        display: table;
+        width: 100%;
+
+        .info-panel-section {
+            display: table-cell;
+            vertical-align: middle;
+            padding: 12px 15px;
+        }
+    }
+
+    .light-hover {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 5;
+        display: none;
+    }
+
+    .solid-hover {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: #5c5e66;
+        z-index: 15;
+        display: none;
+
+        p {
+            color: #ffffff;
+            font-size: 15px;
+            margin: 0;
+            padding: 15px;
+        }
+    }
+
+    .corner {
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-top: 50px solid #5c5e66;
+        border-right: 50px solid transparent;
+        border-bottom: 50px solid transparent;
+        top: 0;
+        left: 0;
+        z-index: 20;
+
+        span {
+            position: absolute;
+            font-size: 15px;
+            top: -42px;
+            left: 10px;
+            z-index: 25;
+        }
+    }
+
+    &.hover {
+        cursor: pointer;
+    }
+}
+
+.uui-info-panel-vertical {
+    .info-panel-section {
+        text-align: center;
+    }
+}

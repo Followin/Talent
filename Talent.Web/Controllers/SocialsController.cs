@@ -16,6 +16,7 @@ using Talent.DAL;
 using Talent.DAL.Models;
 using Talent.Web.Models;
 using Talent.Web.Static;
+using Talent.Web.Utils;
 
 namespace Talent.Web.Controllers
 {
@@ -318,7 +319,7 @@ namespace Talent.Web.Controllers
                     id = x.Id.ToString(),
                     email = "EmailExample",
                     group = "user",
-                    img = x.PhotoLink,
+                    image = x.PhotoLink,
                     skype = "SkypeExample",
                     title = x.FirstName + ' ' + x.LastName,
                     project = x.Project,
@@ -329,7 +330,7 @@ namespace Talent.Web.Controllers
                 var skillNodes = userSkills.Select(x => x.Skill).ToList().Select(x => new Node
                 {
                     id = x.Id.ToString(),
-                    img = @"https://upload.wikimedia.org/wikipedia/en/c/cf/Daemon_tools_logo.png",
+                    image = @"https://upload.wikimedia.org/wikipedia/en/c/cf/Daemon_tools_logo.png",
                     value = x.Users.Count,
                     title = x.Name,
                     group = "skill"
@@ -386,7 +387,7 @@ namespace Talent.Web.Controllers
                     id = x.Id.ToString(),
                     email = "EmailExample",
                     group = "user",
-                    img = x.PhotoLink,
+                    image = x.PhotoLink,
                     skype = "SkypeExample",
                     title = x.FirstName + ' ' + x.LastName,
                     project = x.Project,
@@ -397,7 +398,7 @@ namespace Talent.Web.Controllers
                 var interestNodes = userInterests.Select(x => x.Interest).ToList().Select(x => new Node
                 {
                     id = x.Id.ToString(),
-                    img = @"https://upload.wikimedia.org/wikipedia/en/c/cf/Daemon_tools_logo.png",
+                    image = @"https://upload.wikimedia.org/wikipedia/en/c/cf/Daemon_tools_logo.png",
                     value = x.Users.Count,
                     title = x.TitleEn + '/' + x.TitleRu,
                     group = "interest"
@@ -464,7 +465,7 @@ namespace Talent.Web.Controllers
                 id = x.Id.ToString(),
                 email = "EmailExample",
                 group = "user",
-                img = x.PhotoLink,
+                image = x.PhotoLink,
                 skype = "SkypeExample",
                 title = x.FirstName + ' ' + x.LastName,
                 project = x.Project,
@@ -477,19 +478,19 @@ namespace Talent.Web.Controllers
             var userInterests = _db.UserInterests.Where(x => userIds.Contains(x.UserId));
             var userSkills = _db.UserSkills.Where(x => userIds.Contains(x.UserId));
 
-            var interestNodes = userInterests.Select(x => x.Interest).ToList().Select(x => new Node
+            var interestNodes = userInterests.Select(x => x.Interest).ToList().Distinct(new InterestEqualityComparer()).Select(x => new Node
             {
                 id = x.Id.ToString(),
                 value = random.Next(0, 100),
-                img = @"http://unityingreensboro.org/wp-content/uploads/2011/04/music1.jpg",
+                image = @"http://unityingreensboro.org/wp-content/uploads/2011/04/music1.jpg",
                 title = x.TitleRu,
                 group = "interest"
             });
 
-            var skillNodes = userSkills.Select(x => x.Skill).ToList().Select(x => new Node
+            var skillNodes = userSkills.Select(x => x.Skill).ToList().Distinct(new SkillEqualityComparer()).Select(x => new Node
             {
                 id = x.Id.ToString(),
-                img = @"https://upload.wikimedia.org/wikipedia/en/c/cf/Daemon_tools_logo.png",
+                image = @"https://upload.wikimedia.org/wikipedia/en/c/cf/Daemon_tools_logo.png",
                 value = random.Next(0, 100),
                 title = x.Name,
                 group = "skill"
